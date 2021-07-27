@@ -1,2 +1,2 @@
 # LetsWatch
-Simple app that helps people decide what movie to watch together on a friday night.
+A Sample App that helps choosing a movie to watch with friends.
