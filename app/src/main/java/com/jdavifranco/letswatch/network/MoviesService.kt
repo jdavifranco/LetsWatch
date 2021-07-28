@@ -8,6 +8,6 @@ interface MoviesService {
     fun getPopularMovies()
     //Companion object that holds retrofit builder
     companion object{
-        private const val MOVIES_BASE_URL="https://api.themoviedb.org/3/movie/"
+
     }
 }
