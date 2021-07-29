@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.jdavifranco.letswatch.R
 
 class GalleryFragment : Fragment() {
@@ -20,7 +21,10 @@ class GalleryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.gallery_fragment, container, false)
+        val view =  inflater.inflate(R.layout.gallery_fragment, container, false)
+        val txtResponse:TextView = view.findViewById(R.id.txtResponse)
+
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
