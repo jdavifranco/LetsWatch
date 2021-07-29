@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import com.jdavifranco.letswatch.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GalleryFragment : Fragment() {
 
@@ -15,7 +17,7 @@ class GalleryFragment : Fragment() {
         fun newInstance() = GalleryFragment()
     }
 
-    private lateinit var viewModel: GalleryViewModel
+    val viewModel: GalleryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,14 +25,10 @@ class GalleryFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.gallery_fragment, container, false)
         val txtResponse:TextView = view.findViewById(R.id.txtResponse)
-
+        viewModel.networkMovies.observe(viewLifecycleOwner, Observer {
+            txtResponse.text = it.movies.size.toString()
+        })
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GalleryViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
