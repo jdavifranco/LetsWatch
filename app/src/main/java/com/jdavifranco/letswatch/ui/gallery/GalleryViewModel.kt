@@ -1,19 +1,22 @@
 package com.jdavifranco.letswatch.ui.gallery
 
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
-import com.jdavifranco.letswatch.network.NetworkMovies
+import androidx.lifecycle.viewModelScope
 import com.jdavifranco.letswatch.repository.Repository
+import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
-    val networkMovies = MutableLiveData<NetworkMovies>()
+    val movies = repository.movies
 
     init {
-        getMovies()
+        refreshMovies()
     }
 
 
-    fun getMovies(){
-        networkMovies.postValue(repository.getPopularMovies())
+    private fun refreshMovies(){
+        viewModelScope.launch {
+            repository.refreshPopularMovies()
+        }
     }
 }

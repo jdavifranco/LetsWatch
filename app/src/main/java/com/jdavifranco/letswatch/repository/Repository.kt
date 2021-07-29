@@ -1,14 +1,22 @@
 package com.jdavifranco.letswatch.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.jdavifranco.letswatch.network.MoviesDTO
 import com.jdavifranco.letswatch.network.MoviesService
-import com.jdavifranco.letswatch.network.NetworkMovies
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class Repository(private val moviesService: MoviesService) {
 
+    private val _movies = MutableLiveData<List<MoviesDTO>>()
+    val movies:LiveData<List<MoviesDTO>>
+    get() = _movies
     //function that gets the popular movies from service
-    fun getPopularMovies():NetworkMovies{
-         return moviesService.getPopularMovies()
+    suspend fun refreshPopularMovies(){
+        withContext(Dispatchers.IO){
+            _movies.postValue(moviesService.getPopularMovies().results)
+        }
     }
 
 }

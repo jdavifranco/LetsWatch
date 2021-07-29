@@ -25,8 +25,8 @@ class GalleryFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.gallery_fragment, container, false)
         val txtResponse:TextView = view.findViewById(R.id.txtResponse)
-        viewModel.networkMovies.observe(viewLifecycleOwner, Observer {
-            txtResponse.text = it.movies.size.toString()
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            txtResponse.text = it.size.toString()
         })
         return view
     }
