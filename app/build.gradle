@@ -34,6 +34,12 @@ android {
 }
 
 dependencies {
+    //Dependency injection KOIN
+    // Koin for Kotlin apps
+    implementation "io.insert-koin:koin-core:$version_koin"
+    // Testing
+    testImplementation "io.insert-koin:koin-test:$version_koin"
+
     //Retrofit dependencies
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines"
