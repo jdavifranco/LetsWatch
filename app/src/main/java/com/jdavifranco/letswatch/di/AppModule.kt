@@ -11,16 +11,17 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
-val appModule = module {
+val repositoryModule = module {
     //retrofit Service
     single { retrofit().create(MoviesService::class.java) }
     //repository
     single {Repository(get())}
+}
 
+
+val appModule = module {
     //gallery ViewModel
     viewModel { GalleryViewModel(get()) }
-
 }
 
 

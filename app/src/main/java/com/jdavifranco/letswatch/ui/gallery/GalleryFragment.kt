@@ -13,10 +13,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GalleryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = GalleryFragment()
-    }
-
     val viewModel: GalleryViewModel by viewModel()
 
     override fun onCreateView(

@@ -19,4 +19,13 @@ class Repository(private val moviesService: MoviesService) {
         }
     }
 
+    suspend fun refreshMovieImages(pos:Int){
+        withContext(Dispatchers.IO){
+            _movies.value?.get(pos)?.let {
+                val images = moviesService.getMovieImages(it.id!!)
+                it.imagens = images.posters
+            }
+        }
+    }
+
 }

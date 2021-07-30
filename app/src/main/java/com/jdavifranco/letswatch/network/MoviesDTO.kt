@@ -12,10 +12,21 @@ data class MoviesDTO (
         val id:Long?,
         val title: String?,
         @Json(name = "release_date")val releaseDate:String?,
-        @Json(name = "vote_average") val vote:Double?)
+        @Json(name = "vote_average") val vote:Double?,
+        var imagens:List<String>?)
 
 @JsonClass(generateAdapter = true)
-data class ImagesDTO (val listImages:List<String>)
+data class DetalhesDTO(
+        val overview:String?,
+        val genres:List<Int>,
+        val runtime:String
+)
+
+@JsonClass(generateAdapter = true)
+data class ImagesDTO (
+        @Json(name  = "backdrops")var backdrops:List<String>?,
+        @Json(name = "posters")var posters: List<String>?
+        )
 
 /*
 @JsonClass(generateAdapter = true)
