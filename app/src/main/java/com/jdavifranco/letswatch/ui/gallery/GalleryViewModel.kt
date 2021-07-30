@@ -13,10 +13,9 @@ class GalleryViewModel(private val repository: Repository) : ViewModel() {
         refreshMovies()
     }
 
-
     private fun refreshMovies(){
         viewModelScope.launch {
-            repository.refreshPopularMovies()
+            repository.getPopularMovies()
         }
     }
 }
