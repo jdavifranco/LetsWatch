@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //Dependency injection KOIN
     // Koin for Kotlin apps
     implementation "io.insert-koin:koin-core:$version_koin"
@@ -48,13 +49,16 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$version_moshi"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     //Kotlin coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutines"
     runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
-    //Lifecycle dependencies
+
+    //Room and lifecyle dependecies
+    implementation "androidx.room:room-runtime:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
 
