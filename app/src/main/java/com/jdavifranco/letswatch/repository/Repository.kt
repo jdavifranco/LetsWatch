@@ -26,6 +26,7 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
             _movies.postValue(movieDao.getAllMovies())
         }
     }
+
     //function that gets de details of a movie
     suspend fun getDetailsOfMovie(movie:Movie){
         withContext(Dispatchers.IO){
@@ -34,7 +35,6 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
             _movies.postValue(movieDao.getAllMovies())
         }
     }
-
 
 
 }

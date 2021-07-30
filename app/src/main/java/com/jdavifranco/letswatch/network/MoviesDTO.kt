@@ -2,6 +2,7 @@ package com.jdavifranco.letswatch.network
 
 import com.jdavifranco.letswatch.database.Detalhes
 import com.jdavifranco.letswatch.database.Movie
+import com.jdavifranco.letswatch.network.infokeys.API_IMAGE_BASE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -14,7 +15,7 @@ fun NetworkMovies.asDatabaseModel():List<Movie>{
                 Movie(
                         id = it.id,
                         title =  it.title,
-                        poster = it.posterUrl,
+                        poster = API_IMAGE_BASE_URL+it.posterUrl,
                         date = it.releaseDate,
                         voteAverage = it.vote,
                         detalhes = null
@@ -50,7 +51,7 @@ data class ImagesDTO (
         )
 
 fun ImagesDTO.toListOfUrlString():List<String>{
-        var imagesUrl:MutableList<String> = mutableListOf()
+        val imagesUrl:MutableList<String> = mutableListOf()
         imagesUrl.addAll(posters)
         imagesUrl.addAll(backdrops)
         return imagesUrl
