@@ -9,6 +9,10 @@ interface MoviesService {
     @GET("movie/popular?api_key=$MOVIES_API_KEY")
     suspend fun getPopularMovies():NetworkMovies
 
+    @GET("movie/{id}?api_key=$MOVIES_API_KEY")
+    suspend fun getMovieDetails(id:Long):DetalhesDTO
+
     @GET("movie/{id}/images?api_key=$MOVIES_API_KEY")
     suspend fun getMovieImages(id:Long):ImagesDTO
+
 }

@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Movie(
     @PrimaryKey val id:Long,
     val title:String,
+    val poster:String,
     val date:String,
     val voteAverage:Double,
     @Embedded var detalhes:Detalhes?
@@ -15,7 +16,7 @@ data class Movie(
 
 data class Detalhes(
     val overview:String,
-    val genres:List<Int>,
-    val runtime:String,
-    val images:List<String>
+    var genres:String,
+    var runtime:String,
+    var images:String?,
 )
