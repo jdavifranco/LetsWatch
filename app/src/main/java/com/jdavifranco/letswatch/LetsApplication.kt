@@ -2,6 +2,8 @@ package com.jdavifranco.letswatch
 
 import android.app.Application
 import com.jdavifranco.letswatch.di.appModule
+import com.jdavifranco.letswatch.di.databaseModule
+import com.jdavifranco.letswatch.di.networkModule
 import com.jdavifranco.letswatch.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -13,7 +15,7 @@ class LetsApplication: Application() {
         startKoin{
             androidLogger()
             androidContext(applicationContext)
-            modules(repositoryModule,appModule)
+            modules(networkModule, databaseModule, repositoryModule,appModule)
         }
     }
 }
