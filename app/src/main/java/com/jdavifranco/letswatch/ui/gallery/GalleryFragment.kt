@@ -33,7 +33,6 @@ class GalleryFragment : Fragment() {
         binding.lifecycleOwner =this
         val moviesAdapter = MoviesAdapter()
         binding.rvMovies.adapter = moviesAdapter
-        binding.rvMovies.setHasFixedSize(true)
         viewModel.movies.observe(viewLifecycleOwner, Observer {
             Log.e("movies size", "${it.size}")
             moviesAdapter.submitList(it)
