@@ -11,17 +11,24 @@
             name="movie"
             type="com.jdavifranco.letswatch.database.Movie" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="2dp">
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="2dp"
+        android:layout_margin="2dp">
 
         <ImageView
             android:id="@+id/imgPoster"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/imageDescription"
+            android:scaleType="centerCrop"
             app:imageUrl="@{movie.poster}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,29 +36,19 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/txtTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="start"
-            android:text="@{movie.title}"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/txtVote"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgPoster"
-            tools:text="Space Jam: A New Legacy" />
-
-        <TextView
             android:id="@+id/txtVote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgPoster"
+            android:layout_gravity="top|end"
+            android:background="@drawable/ic_baseline_star_rate_24"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:textColor="#9041F2"
+            android:textSize="8sp"
+            android:textStyle="bold"
             app:voteAverage="@{movie}"
             tools:text="7.7" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </layout>

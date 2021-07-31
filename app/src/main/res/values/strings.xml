@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LetsWatch</string>
+    <string name="imageDescription">The poster of the movie</string>
 </resources>
