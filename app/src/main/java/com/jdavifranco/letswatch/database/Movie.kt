@@ -20,3 +20,9 @@ data class Detalhes(
     var runtime:String,
     var images:String?,
 )
+
+@Entity(tableName = "genres_table")
+data class Genre(
+    @PrimaryKey val id:Long,
+    val name:String
+)

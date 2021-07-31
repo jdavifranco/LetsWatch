@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TableLayout
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -14,6 +15,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jdavifranco.letswatch.R
+import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,6 +37,7 @@ class GalleryFragment : Fragment() {
         })
         return binding.root
     }
+
 
 }
 

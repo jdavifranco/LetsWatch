@@ -6,6 +6,7 @@ import com.jdavifranco.letswatch.network.MoviesService
 import com.jdavifranco.letswatch.network.infokeys.MOVIES_BASE_URL
 import com.jdavifranco.letswatch.repository.Repository
 import com.jdavifranco.letswatch.ui.gallery.GalleryViewModel
+import com.jdavifranco.letswatch.ui.mainactivity.MainActivityViewModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.koin.android.ext.koin.androidContext
@@ -32,6 +33,8 @@ val repositoryModule = module {
 val appModule = module {
     //gallery ViewModel
     viewModel { GalleryViewModel(get()) }
+    //activity View Model
+    viewModel{ MainActivityViewModel(get())}
 }
 
 

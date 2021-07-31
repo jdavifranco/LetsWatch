@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.network
 
 import com.jdavifranco.letswatch.database.Detalhes
+import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.network.infokeys.API_IMAGE_BASE_URL
 import com.squareup.moshi.Json
@@ -56,3 +57,21 @@ fun ImagesDTO.toListOfUrlString():List<String>{
         imagesUrl.addAll(backdrops)
         return imagesUrl
 }
+
+@JsonClass(generateAdapter = true)
+data class NetworkGenres(@Json(name= "genres")val genres: List<GenreDTO>)
+
+fun NetworkGenres.asDomainGenre():List<Genre>{
+        return genres.map {
+                Genre(
+                        id = it.id,
+                        name = it.name
+                )
+        }
+}
+
+@JsonClass(generateAdapter = true)
+data class GenreDTO(
+        val id: Long,
+         val name:String
+)

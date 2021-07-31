@@ -4,6 +4,13 @@ import androidx.room.*
 
 @Dao
 interface MovieDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllGenres(genre: List<Genre>)
+
+    @Query("SELECT * FROM genres_table")
+    suspend fun getAllGenres():List<Genre>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movie: List<Movie>)
 

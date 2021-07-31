@@ -1,6 +1,8 @@
 package com.jdavifranco.letswatch.ui.gallery
 
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jdavifranco.letswatch.repository.Repository
@@ -8,7 +10,6 @@ import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
     val movies = repository.movies
-
     init {
         refreshMovies()
     }
@@ -18,4 +19,7 @@ class GalleryViewModel(private val repository: Repository) : ViewModel() {
             repository.getPopularMovies()
         }
     }
+
+
+
 }
