@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.ui.gallery
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,16 +11,25 @@ import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
     val movies = repository.movies
+    var page:Int = 1
+
     init {
-        refreshMovies()
+        getMovies(page)
     }
 
-    private fun refreshMovies(){
+    fun getMovies(page:Int){
         viewModelScope.launch {
-            repository.getPopularMovies()
+            repository.getPopularMovies(page)
         }
     }
 
+    fun getNextPage(){
+        page++
+        viewModelScope.launch {
+            Log.e("page", "$page")
+            repository.getPopularMovies(page)
+        }
+    }
 
 
 }

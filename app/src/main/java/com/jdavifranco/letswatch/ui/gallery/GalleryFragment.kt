@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.ui.gallery
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,12 +33,22 @@ class GalleryFragment : Fragment() {
         binding.lifecycleOwner =this
         val moviesAdapter = MoviesAdapter()
         binding.rvMovies.adapter = moviesAdapter
+        binding.rvMovies.setHasFixedSize(true)
         viewModel.movies.observe(viewLifecycleOwner, Observer {
+            Log.e("movies size", "${it.size}")
             moviesAdapter.submitList(it)
         })
+
+        moviesAdapter.rvPosition.observe(viewLifecycleOwner, Observer {
+            Log.e("position", "$it")
+            Log.e("posMUlt", "$it % 20 = ${it%20}")
+            if(it%20==0){
+                viewModel.getNextPage()
+            }
+        })
+
         return binding.root
     }
 
 
 }
-

@@ -14,28 +14,23 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
     private val _movies = MutableLiveData<List<Movie>>()
     val movies:LiveData<List<Movie>>
     get() = _movies
-    private var _genres:MutableList<Genre> = mutableListOf()
-    val genres:List<Genre>
+    private val _genres = MutableLiveData<List<Genre>>()
+    val genres:LiveData<List<Genre>>
     get() = _genres
 
     //function to get genres if not in database
     suspend fun getMoviesGenres(){
-        if(_genres.size==0) {
-            _genres.addAll(movieDao.getAllGenres())
-            if(_genres.size==0){
-                withContext(Dispatchers.IO) {
+        withContext(Dispatchers.IO) {
                     val networkGenres = moviesService.getGenresOfMovies()
-                    _genres.addAll(networkGenres.asDomainGenre())
-                    movieDao.insertAllGenres(_genres)
-                }
-            }
+                    movieDao.insertAllGenres(networkGenres.asDomainGenre())
+                    _genres.postValue(movieDao.getAllGenres())
         }
     }
 
     //function that gets the popular movies from service
-    suspend fun getPopularMovies(){
+    suspend fun getPopularMovies(page:Int){
         withContext(Dispatchers.IO){
-            val networkMovies = moviesService.getPopularMovies()
+            val networkMovies = moviesService.getPopularMovies(page)
             movieDao.insertAll(networkMovies.asDatabaseModel())
             _movies.postValue(movieDao.getAllMovies())
         }

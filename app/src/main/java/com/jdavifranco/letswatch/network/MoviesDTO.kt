@@ -17,7 +17,7 @@ fun NetworkMovies.asDatabaseModel():List<Movie>{
                         id = it.id,
                         title =  it.title,
                         poster = API_IMAGE_BASE_URL+it.posterUrl,
-                        date = it.releaseDate,
+                        date = if(it.releaseDate!=null) it.releaseDate else "",
                         voteAverage = it.vote,
                         detalhes = null
                 )
@@ -29,7 +29,7 @@ data class MoviesDTO (
         val id:Long,
         val title: String,
         @Json(name="poster_path")val posterUrl:String,
-        @Json(name = "release_date")val releaseDate:String,
+        @Json(name = "release_date")val releaseDate:String?,
         @Json(name = "vote_average") val vote:Double)
 
 @JsonClass(generateAdapter = true)
