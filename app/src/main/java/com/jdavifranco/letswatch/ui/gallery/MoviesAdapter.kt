@@ -2,9 +2,14 @@ package com.jdavifranco.letswatch.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
 import com.jdavifranco.letswatch.databinding.GalleryItemLayoutBinding
@@ -19,6 +24,7 @@ class MoviesAdapter:ListAdapter<Movie, MoviesAdapter.MoviesViewHolder>(DiffCallB
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+
     }
 
     class MoviesViewHolder(private val binding: GalleryItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
