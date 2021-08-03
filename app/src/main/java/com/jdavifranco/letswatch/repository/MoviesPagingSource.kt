@@ -12,7 +12,7 @@ import retrofit2.HttpException
 
 //Page index for the first request
 private const val MOVIES_STARTING_PAGE_INDEX = 1
-private const val MOVIES_PAGE_SIZE = 20
+const val MOVIES_PAGE_SIZE = 5
 class MoviesPagingSource (
     private val moviesService: MoviesService,
     private val query: String) :PagingSource<Int, Movie>(){
@@ -21,7 +21,9 @@ class MoviesPagingSource (
         val position = params.key?: MOVIES_STARTING_PAGE_INDEX
         val apiQuery = query
         return try {
-            val response = moviesService.getPopularMovies(position)
+            val response = if(apiQuery=="-1") moviesService.getPopularMovies(position)
+            else moviesService.getMoviesOfGenre(apiQuery,position)
+
             val movies = response.asDatabaseModel()
             val nextKey = if(movies.isEmpty()){
                 null
@@ -30,7 +32,7 @@ class MoviesPagingSource (
             }
             LoadResult.Page(
                 data = movies,
-                prevKey = if(position == MOVIES_STARTING_PAGE_INDEX) null else position-1,
+                prevKey = if (position == MOVIES_STARTING_PAGE_INDEX) null else position - 1,
                 nextKey=nextKey,
             )
         } catch (exception: IOException) {
@@ -48,6 +50,7 @@ class MoviesPagingSource (
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+
         }
     }
 

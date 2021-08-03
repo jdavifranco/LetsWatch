@@ -2,11 +2,15 @@ package com.jdavifranco.letswatch.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.database.MovieDao
 import com.jdavifranco.letswatch.network.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class Repository(private val moviesService: MoviesService, private val movieDao:MovieDao) {
@@ -22,7 +26,10 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
     suspend fun getMoviesGenres(){
         withContext(Dispatchers.IO) {
                     val networkGenres = moviesService.getGenresOfMovies()
-                    movieDao.insertAllGenres(networkGenres.asDomainGenre())
+                    val popular = Genre(-1, "POPULAR")
+                    val mGenres:MutableList<Genre> = mutableListOf(popular)
+                    mGenres.addAll(networkGenres.asDomainGenre())
+                    movieDao.insertAllGenres(mGenres)
                     _genres.postValue(movieDao.getAllGenres())
         }
     }
@@ -34,6 +41,16 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
             movieDao.insertAll(networkMovies.asDatabaseModel())
             _movies.postValue(movieDao.getAllMovies())
         }
+    }
+
+    fun getMoviesStream(query: String): Flow<PagingData<Movie>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = MOVIES_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { MoviesPagingSource(moviesService, query) }
+        ).flow
     }
 
     //function that gets de details of a movie
