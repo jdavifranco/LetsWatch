@@ -6,30 +6,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.repository.Repository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
-    val movies = repository.movies
-    var page:Int = 1
+    private var currentQueryValue: String? = null
+    private var currentSearchResult: Flow<PagingData<Movie>>? = null
 
-    init {
-        getMovies(page)
+    init{
     }
 
-    fun getMovies(page:Int){
-        viewModelScope.launch {
-            repository.getPopularMovies(page)
+
+    fun searchMovie(queryString: String): Flow<PagingData<Movie>> {
+        val lastResult = currentSearchResult
+        if (queryString == currentQueryValue && lastResult != null) {
+            return lastResult
         }
+        currentQueryValue = queryString
+        val newResult: Flow<PagingData<Movie>> = repository.getMoviesStream(queryString)
+            .cachedIn(viewModelScope)
+        currentSearchResult = newResult
+
+        return newResult
     }
 
-    fun getNextPage(){
-        page++
-        viewModelScope.launch {
-            Log.e("page", "$page")
-            repository.getPopularMovies(page)
-        }
-    }
 
 
 }

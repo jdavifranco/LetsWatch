@@ -11,7 +11,10 @@ interface MoviesService {
     suspend fun getGenresOfMovies():NetworkGenres
 
     @GET("discover/movie?api_key=$MOVIES_API_KEY")
-    suspend fun getMoviesOfGenre(@Query("with_genres") genreId:Long):NetworkMovies
+    suspend fun getMoviesOfGenre(
+        @Query("with_genres") genreId:String,
+        @Query("page") page:Int
+    ):NetworkMovies
 
     @GET("movie/popular?api_key=$MOVIES_API_KEY")
     suspend fun getPopularMovies(@Query("page") page:Int):NetworkMovies

@@ -16,8 +16,8 @@ fun NetworkMovies.asDatabaseModel():List<Movie>{
                 Movie(
                         id = it.id,
                         title =  it.title,
-                        poster = API_IMAGE_BASE_URL+it.posterUrl,
-                        date = if(it.releaseDate!=null) it.releaseDate else "",
+                        poster = API_IMAGE_BASE_URL+(it.posterUrl?:""),
+                        date = it.releaseDate?:"?",
                         voteAverage = it.vote,
                         detalhes = null
                 )
@@ -28,20 +28,20 @@ fun NetworkMovies.asDatabaseModel():List<Movie>{
 data class MoviesDTO (
         val id:Long,
         val title: String,
-        @Json(name="poster_path")val posterUrl:String,
+        @Json(name="poster_path")val posterUrl:String?,
         @Json(name = "release_date")val releaseDate:String?,
         @Json(name = "vote_average") val vote:Double)
 
 @JsonClass(generateAdapter = true)
 data class DetalhesDTO(
-        val overview:String,
+        val overview:String?,
         val genres:List<Int>,
-        val runtime:String
+        val runtime:String?
 )
 fun DetalhesDTO.toDetalhesDomain() = Detalhes(
-        overview = this.overview,
+        overview = this.overview?:"?",
         genres = this.genres.toString(),
-        runtime = this.runtime,
+        runtime = this.runtime?:"?",
         images = null
 )
 
