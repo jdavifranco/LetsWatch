@@ -6,7 +6,14 @@ Lets Watch is a personal project created to learn more about android development
 The app have two screens: Gallery and Details. The gallery is the main screen and it shows movies by genre, that can be
 chosen by changing tabs, and the details screen shows the details of the chosen movie.
 
+The app app is currently under development.
 
+Screenshots
+-----------
+#### Gallery of Movies
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch3.jpg" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch2.jpg" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch1.jpg" width="33%"></img> 
+#### Details Of A Movie
+##### *Upcoming feature :)*
 
 
 Libraries Used
@@ -36,3 +43,20 @@ Libraries Used
 [10]: https://bumptech.github.io/glide/
 [11]: https://insert-koin.io/
 [12]: https://developer.android.com/guide/navigation/navigation-swipe-view-2?hl=en
+
+License
+-------
+
+ Designed and developed by 2021 jdavifranco (João Davi F. Gonçalves)
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
