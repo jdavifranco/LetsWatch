@@ -21,7 +21,7 @@ Libraries Used
   * [Data Binding][2] - Declaratively bind observable data to UI elements.
   * [Lifecycles][3] - Create a UI that automatically responds to lifecycle events.
   * [LiveData][4] - Build data objects that notify views when the underlying database changes.
-  * [Room][5] - Access your app's SQLite database with in-app objects and compile-time checks.
+  * [Room][5] - Access app's SQLite database with in-app objects and compile-time checks.
   * [ViewModel][6] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
      asynchronous tasks for optimal execution.
   * [Paging][7] -The Paging Library helps load and display small chunks of data at a time.
