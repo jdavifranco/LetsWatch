@@ -35,7 +35,7 @@ data class MoviesDTO (
 @JsonClass(generateAdapter = true)
 data class DetalhesDTO(
         val overview:String?,
-        val genres:List<Int>,
+        val genres:List<GenreDTO>,
         val runtime:String?
 )
 fun DetalhesDTO.toDetalhesDomain() = Detalhes(

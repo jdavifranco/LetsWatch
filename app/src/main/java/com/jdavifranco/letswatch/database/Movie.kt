@@ -15,7 +15,7 @@ data class Movie(
 )
 
 data class Detalhes(
-    val overview:String,
+    var overview:String,
     var genres:String,
     var runtime:String,
     var images:String?,
