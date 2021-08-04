@@ -6,7 +6,7 @@ Lets Watch is a personal project created to learn more about android development
 The app have two screens: Gallery and Details. The gallery is the main screen and it shows movies by genre, that can be
 chosen by changing tabs, and the details screen shows the details of the chosen movie.
 
-The app app is currently under development.
+The app is currently under development.
 
 Screenshots
 -----------
