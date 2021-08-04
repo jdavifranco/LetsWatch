@@ -5,6 +5,7 @@ import com.jdavifranco.letswatch.database.MovieDatabase
 import com.jdavifranco.letswatch.network.MoviesService
 import com.jdavifranco.letswatch.network.infokeys.MOVIES_BASE_URL
 import com.jdavifranco.letswatch.repository.Repository
+import com.jdavifranco.letswatch.ui.details.DetailsViewModel
 import com.jdavifranco.letswatch.ui.gallery.GalleryViewModel
 import com.jdavifranco.letswatch.ui.mainactivity.MainActivityViewModel
 import com.squareup.moshi.Moshi
@@ -35,6 +36,8 @@ val appModule = module {
     viewModel { GalleryViewModel(get()) }
     //activity View Model
     viewModel{ MainActivityViewModel(get())}
+    //details View Model
+    viewModel {DetailsViewModel(get())}
 }
 
 
