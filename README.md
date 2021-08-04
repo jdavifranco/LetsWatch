@@ -44,9 +44,15 @@ Libraries Used
 [11]: https://insert-koin.io/
 [12]: https://developer.android.com/guide/navigation/navigation-swipe-view-2?hl=en
 
+Third Party Content
+-------------------
+[TMDB](https://www.themoviedb.org/) - Movies Images and information source
+
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/tmdbSourceLogo.svg" width="33%"></img>
+
 License
 -------
-
+```xml
  Designed and developed by 2021 jdavifranco (João Davi F. Gonçalves)
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -60,3 +66,4 @@ License
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+```
