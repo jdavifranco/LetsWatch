@@ -1,31 +1,39 @@
 package com.jdavifranco.letswatch.ui.gallery
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.tabs.TabLayout
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
+import com.jdavifranco.letswatch.ui.details.DetailsActivity
+import com.jdavifranco.letswatch.ui.mainactivity.MainActivity
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-private const val ARG_QUERY = "POPULAR"
+
+private const val ARG_QUERY = "QUERY"
 
 class GalleryFragment : Fragment() {
 
     private val viewModel: GalleryViewModel by viewModel()
     private lateinit var binding:GalleryFragmentBinding
-    private val adapter = MoviesAdapter()
     private var searchJob: Job? = null
-    private var query: String = "POPULAR"
+    private lateinit var query: String
+
+    val mcl: MovieClickListener = object : MovieClickListener {
+        override fun onItemClick(id: Long) {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra("MOVIE_ID", id)
+            startActivity(intent)
+        }
+    }
+    private val adapter = MoviesAdapter(mcl)
 
     private fun search(query: String) {
         // Make sure we cancel the previous job before creating a new one
