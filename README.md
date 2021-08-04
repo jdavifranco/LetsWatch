@@ -46,7 +46,7 @@ Libraries Used
 
 Third Party Content
 -------------------
-[TMDB](https://www.themoviedb.org/) - Movies Images and information source
+[TMDB](https://www.themoviedb.org/) - Movies Information Source (according to [License](https://www.themoviedb.org/documentation/api/terms-of-use))
 
 <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/tmdbSourceLogo.svg" width="33%"></img>
 
