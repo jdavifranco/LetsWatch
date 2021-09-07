@@ -11,9 +11,9 @@ The app is currently under development.
 Screenshots
 -----------
 #### Gallery of Movies
-<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch3.jpg" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch2.jpg" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot_LetsWatch1.jpg" width="33%"></img> 
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screensho1.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot2.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot3.png" width="33%"></img> 
 #### Details Of A Movie
-##### *Upcoming feature :)*
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot4.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot5.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot6.png" width="33%"></img> 
 
 
 Libraries Used
