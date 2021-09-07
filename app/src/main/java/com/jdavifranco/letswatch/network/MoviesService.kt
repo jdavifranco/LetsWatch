@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.network
 
 import android.media.Image
+import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.network.infokeys.MOVIES_API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -22,6 +23,9 @@ interface MoviesService {
 
     @GET("movie/{id}?api_key=$MOVIES_API_KEY")
     suspend fun getMovieDetails(@Path("id")id:Long):DetalhesDTO
+
+    @GET("movie/{id}?api_key=$MOVIES_API_KEY")
+    suspend fun getNetMovieById(@Path("id")id:Long):MoviesDTO
 
     @GET("movie/{id}/images?api_key=$MOVIES_API_KEY")
     suspend fun getMovieImages(id:Long):ImagesDTO

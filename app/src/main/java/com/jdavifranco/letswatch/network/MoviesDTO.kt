@@ -6,6 +6,8 @@ import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.network.infokeys.API_IMAGE_BASE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import java.util.*
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 //Classes that define data transfer objects to be received from the api
 @JsonClass(generateAdapter = true)
@@ -32,6 +34,19 @@ data class MoviesDTO (
         @Json(name = "release_date")val releaseDate:String?,
         @Json(name = "vote_average") val vote:Double)
 
+fun MoviesDTO.asDatabaseMovieModel():Movie{
+        return Movie(
+                id = this.id,
+                title =  this.title,
+                poster = API_IMAGE_BASE_URL+(this.posterUrl?:""),
+                date = this.releaseDate?:"?",
+                voteAverage = this.vote,
+                detalhes = null
+        )
+}
+
+
+
 @JsonClass(generateAdapter = true)
 data class DetalhesDTO(
         val overview:String?,
@@ -40,7 +55,7 @@ data class DetalhesDTO(
 )
 fun DetalhesDTO.toDetalhesDomain() = Detalhes(
         overview = this.overview?:"?",
-        genres = this.genres.toString(),
+        genres = this.genres.map { it -> it.name }.toString(),
         runtime = this.runtime?:"?",
         images = null
 )

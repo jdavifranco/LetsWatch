@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.ui
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -39,7 +40,7 @@ fun bindYearRuntime(textView: TextView, movie: Movie?){
         if (runtime == null) {
             textView.text = year
         } else {
-            textView.text = "$year - $runtime"
+            textView.text = "$year - $runtime min"
         }
     }
 }
@@ -59,6 +60,8 @@ fun bindOverview(textView: TextView, movie:Movie?){
 @BindingAdapter("bindGenres")
 fun bindGenres(textView: TextView, movie:Movie?){
     movie?.let {
-        textView.text = movie.detalhes?.genres
+        var genre = movie.detalhes?.genres
+        genre = genre?.trim('[', ']')
+        textView.text = "Genres: "+genre
     }
 }

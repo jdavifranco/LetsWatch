@@ -6,13 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.jdavifranco.letswatch.database.Detalhes
 import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.database.MovieDao
 import com.jdavifranco.letswatch.network.*
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
 
 class Repository(private val moviesService: MoviesService, private val movieDao:MovieDao) {
 
@@ -54,13 +54,13 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
             }
     }
 
+
+
     suspend fun getMovieAndDetailsById(id:Long):Movie{
-        var movie= movieDao.getMovieById(id)
-        Log.e("movie", "$movie")
-        movie.detalhes = moviesService.getMovieDetails(id).toDetalhesDomain()
-        movieDao.update(movie)
-        Log.e("movie", "${movie.detalhes?.genres}")
+       val movie = moviesService.getNetMovieById(id).asDatabaseMovieModel()
+        Log.e("get movie", "$movie")
+        movie.detalhes  = moviesService.getMovieDetails(id).toDetalhesDomain()
+        Log.e("detalhes", "${movie.detalhes}")
         return movie
     }
-
 }
