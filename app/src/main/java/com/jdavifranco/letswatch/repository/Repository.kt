@@ -1,24 +1,23 @@
 package com.jdavifranco.letswatch.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jdavifranco.letswatch.database.Detalhes
 import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.database.MovieDao
-import com.jdavifranco.letswatch.network.*
-import kotlinx.coroutines.*
+import com.jdavifranco.letswatch.network.MoviesService
+import com.jdavifranco.letswatch.network.asDatabaseMovieModel
+import com.jdavifranco.letswatch.network.asDetalhesDomain
+import com.jdavifranco.letswatch.network.asDomainGenre
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class Repository(private val moviesService: MoviesService, private val movieDao:MovieDao) {
 
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies:LiveData<List<Movie>>
-    get() = _movies
     private val _genres = MutableLiveData<List<Genre>>()
     val genres:LiveData<List<Genre>>
     get() = _genres
@@ -36,31 +35,27 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
     //function to get genres if not in database
     suspend fun getMoviesGenres() {
         withContext(Dispatchers.IO) {
-            val networkGenres = moviesService.getGenresOfMovies()
-            val popular = Genre(-1, "POPULAR")
-            val mGenres: MutableList<Genre> = mutableListOf(popular)
-            mGenres.addAll(networkGenres.asDomainGenre())
-            movieDao.insertAllGenres(mGenres)
-            _genres.postValue(movieDao.getAllGenres())
-        }
-    }
-
-    //function that gets de details of a movie
-    suspend fun refreshDetailsOfMovie(movie:Movie){
-            withContext(Dispatchers.IO){
-                movie.detalhes = moviesService.getMovieDetails(movie.id).toDetalhesDomain()
-                movieDao.update(movie)
-                _movies.postValue(movieDao.getAllMovies())
+            val dbGenres = movieDao.getAllGenres()
+            if(dbGenres.isEmpty()){
+                val networkGenres = moviesService.getGenresOfMovies()
+                val popular = Genre(-1, "POPULAR")
+                val mGenres: MutableList<Genre> = mutableListOf(popular)
+                mGenres.addAll(networkGenres.asDomainGenre())
+                movieDao.insertAllGenres(mGenres)
+                _genres.postValue(mGenres)
             }
+            else{
+                _genres.postValue(dbGenres)
+            }
+        }
     }
 
 
 
     suspend fun getMovieAndDetailsById(id:Long):Movie{
-       val movie = moviesService.getNetMovieById(id).asDatabaseMovieModel()
-        Log.e("get movie", "$movie")
-        movie.detalhes  = moviesService.getMovieDetails(id).toDetalhesDomain()
-        Log.e("detalhes", "${movie.detalhes}")
-        return movie
+       val movieNetwork = moviesService.getMovieById(id)
+        val movieDomain = movieNetwork.asDatabaseMovieModel()
+        movieDomain.detalhes = movieNetwork.asDetalhesDomain()
+        return movieDomain
     }
 }

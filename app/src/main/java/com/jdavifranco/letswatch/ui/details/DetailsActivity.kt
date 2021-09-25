@@ -1,8 +1,7 @@
 package com.jdavifranco.letswatch.ui.details
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.jdavifranco.letswatch.databinding.ActivityDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,7 +17,6 @@ class DetailsActivity : AppCompatActivity() {
 
         val movieId = intent.getLongExtra("MOVIE_ID", -1)
         if(movieId!=-1L){
-            Log.e("movieID", "$movieId")
             viewModel.resfreshDetailsMovies(movieId)
             viewModel.movie.observe(this, Observer {
                 binding.movie = it

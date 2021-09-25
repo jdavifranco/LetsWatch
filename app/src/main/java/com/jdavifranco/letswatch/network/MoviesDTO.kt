@@ -3,11 +3,8 @@ package com.jdavifranco.letswatch.network
 import com.jdavifranco.letswatch.database.Detalhes
 import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
-import com.jdavifranco.letswatch.network.infokeys.API_IMAGE_BASE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.util.*
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 //Classes that define data transfer objects to be received from the api
 @JsonClass(generateAdapter = true)
@@ -32,7 +29,11 @@ data class MoviesDTO (
         val title: String,
         @Json(name="poster_path")val posterUrl:String?,
         @Json(name = "release_date")val releaseDate:String?,
-        @Json(name = "vote_average") val vote:Double)
+        @Json(name = "vote_average") val vote:Double,
+        val overview:String?,
+        val genres:List<GenreDTO>?,
+        val runtime:String?
+        )
 
 fun MoviesDTO.asDatabaseMovieModel():Movie{
         return Movie(
@@ -44,9 +45,13 @@ fun MoviesDTO.asDatabaseMovieModel():Movie{
                 detalhes = null
         )
 }
-
-
-
+fun MoviesDTO.asDetalhesDomain() = Detalhes(
+        overview = this.overview?:"?",
+        genres = this.genres?.map { it -> it.name }.toString(),
+        runtime = this.runtime?:"?",
+        images = null
+)
+/*
 @JsonClass(generateAdapter = true)
 data class DetalhesDTO(
         val overview:String?,
@@ -60,18 +65,8 @@ fun DetalhesDTO.toDetalhesDomain() = Detalhes(
         images = null
 )
 
-@JsonClass(generateAdapter = true)
-data class ImagesDTO (
-        @Json(name  = "backdrops")var backdrops:List<String>,
-        @Json(name = "posters")var posters: List<String>
-        )
 
-fun ImagesDTO.toListOfUrlString():List<String>{
-        val imagesUrl:MutableList<String> = mutableListOf()
-        imagesUrl.addAll(posters)
-        imagesUrl.addAll(backdrops)
-        return imagesUrl
-}
+ */
 
 @JsonClass(generateAdapter = true)
 data class NetworkGenres(@Json(name= "genres")val genres: List<GenreDTO>)

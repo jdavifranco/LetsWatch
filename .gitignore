@@ -14,3 +14,4 @@
 .cxx
 local.properties
 /app/src/main/java/com/jdavifranco/letswatch/network/infokeys/
+/app/src/main/java/com/jdavifranco/letswatch/network/infokeys.kt

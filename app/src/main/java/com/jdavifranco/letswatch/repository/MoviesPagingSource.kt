@@ -5,8 +5,7 @@ import androidx.paging.PagingState
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.network.MoviesService
 import com.jdavifranco.letswatch.network.asDatabaseModel
-import com.jdavifranco.letswatch.network.infokeys.MOVIES_API_KEY
-import com.jdavifranco.letswatch.network.infokeys.MOVIES_BASE_URL
+
 import okio.IOException
 import retrofit2.HttpException
 

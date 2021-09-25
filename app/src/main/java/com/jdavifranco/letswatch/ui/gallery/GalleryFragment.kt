@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
 import com.jdavifranco.letswatch.ui.details.DetailsActivity
-import com.jdavifranco.letswatch.ui.mainactivity.MainActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -45,13 +44,6 @@ class GalleryFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            query = it.getString(ARG_QUERY)?:"POPULAR"
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,6 +55,13 @@ class GalleryFragment : Fragment() {
         binding.rvMovies.adapter = adapter
         binding.rvMovies.setHasFixedSize(true)
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            query = it.getString(ARG_QUERY)?:"POPULAR"
+        }
     }
 
     companion object{

@@ -1,6 +1,5 @@
 package com.jdavifranco.letswatch.ui.gallery
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -24,7 +23,6 @@ class MoviesAdapter(var movieClickListener: MovieClickListener):PagingDataAdapte
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         val item = getItem(position)
         if(item!=null){
-            Log.e("item", "${item.title}: $position ")
             holder.bind(item, movieClickListener)
         }
     }

@@ -17,10 +17,6 @@ class GalleryViewModel(private val repository: Repository) : ViewModel() {
     private var currentQueryValue: String? = null
     private var currentSearchResult: Flow<PagingData<Movie>>? = null
 
-    init{
-    }
-
-
     fun searchMovie(queryString: String): Flow<PagingData<Movie>> {
         val lastResult = currentSearchResult
         if (queryString == currentQueryValue && lastResult != null) {

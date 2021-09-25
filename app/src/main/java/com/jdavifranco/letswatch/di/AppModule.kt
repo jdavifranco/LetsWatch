@@ -2,8 +2,8 @@ package com.jdavifranco.letswatch.di
 
 import androidx.room.Room
 import com.jdavifranco.letswatch.database.MovieDatabase
+import com.jdavifranco.letswatch.network.MOVIES_BASE_URL
 import com.jdavifranco.letswatch.network.MoviesService
-import com.jdavifranco.letswatch.network.infokeys.MOVIES_BASE_URL
 import com.jdavifranco.letswatch.repository.Repository
 import com.jdavifranco.letswatch.ui.details.DetailsViewModel
 import com.jdavifranco.letswatch.ui.gallery.GalleryViewModel
