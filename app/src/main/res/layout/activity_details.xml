@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="details"
-        type="com.jdavifranco.letswatch.database.model.Details" />
+        type="com.jdavifranco.letswatch.datasource.local.model.Details" />
 </data>
 <ScrollView
     android:background="@color/white"
@@ -16,7 +16,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.details.DetailsActivity">
+        tools:context=".views.moviedetails.DetailsActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"

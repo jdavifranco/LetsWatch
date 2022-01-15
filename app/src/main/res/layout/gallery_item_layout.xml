@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jdavifranco.letswatch.ui.gallery.GalleryViewModel" />
+            type="com.jdavifranco.letswatch.views.moviegallery.GalleryViewModel" />
         <variable
             name="movie"
-            type="com.jdavifranco.letswatch.database.Movie" />
+            type="com.jdavifranco.letswatch.datasource.local.Movie" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
