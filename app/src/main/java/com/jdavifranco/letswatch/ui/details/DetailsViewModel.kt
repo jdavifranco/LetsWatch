@@ -9,7 +9,7 @@ import com.jdavifranco.letswatch.repository.Repository
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val repository: Repository) : ViewModel() {
-    private var _details = MutableLiveData<com.jdavifranco.letswatch.database.model.Details>()
+    private var _details = MutableLiveData<Details>()
     val details: LiveData<Details>
         get() = _details
 

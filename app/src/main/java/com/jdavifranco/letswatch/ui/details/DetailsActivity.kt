@@ -19,7 +19,7 @@ class DetailsActivity : AppCompatActivity() {
         if(movieId!=-1L){
             viewModel.refreshDetails(movieId)
             viewModel.details.observe(this, Observer {
-                binding.movie = it
+                binding.details = it
             })
         }
         setContentView(binding.root)

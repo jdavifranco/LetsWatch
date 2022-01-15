@@ -11,7 +11,7 @@ import com.jdavifranco.letswatch.database.model.Details
 import com.jdavifranco.letswatch.database.model.Genre
 import com.jdavifranco.letswatch.network.MoviesService
 import com.jdavifranco.letswatch.network.model.asDomainDetails
-import com.jdavifranco.letswatch.network.model.asDomainGenre
+import com.jdavifranco.letswatch.network.model.asDomainList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -34,26 +34,18 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
 
     suspend fun getMoviesGenres() {
         withContext(Dispatchers.IO) {
-            val dbGenres = movieDao.getAllGenres()
-            if(dbGenres.isEmpty()){
                 val networkGenres = moviesService.getGenresOfMovies()
                 val popular = Genre(-1, "POPULAR")
                 val mGenres: MutableList<Genre> = mutableListOf(popular)
-                mGenres.addAll(networkGenres.asDomainGenre())
-                movieDao.insertAllGenres(mGenres)
+                mGenres.addAll(networkGenres.genres.asDomainList())
                 _genres.postValue(mGenres)
             }
-            else{
-                _genres.postValue(dbGenres)
-            }
-        }
+
     }
 
 
-
-    suspend fun getMovieAndDetailsById(id:Long): Details {
-       val detailsNetwork = moviesService.getMovieById(id)
-        val detailsDomain = detailsNetwork.asDomainDetails()
-        return detailsDomain
+    suspend fun getMovieAndDetailsById(id: Long): Details {
+        val detailsNetwork = moviesService.getMovieById(id)
+        return detailsNetwork.asDomainDetails()
     }
 }

@@ -1,6 +1,7 @@
 package com.jdavifranco.letswatch.network.model
 
 import com.jdavifranco.letswatch.database.model.Details
+import com.jdavifranco.letswatch.database.model.Genre
 import com.jdavifranco.letswatch.network.infokeys.API_IMAGE_BASE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -13,9 +14,11 @@ data class DetailsDTO(
     @Json(name = "release_date")val releaseDate:String?,
     @Json(name = "vote_average") val voteAverage:Double,
     val overview:String?,
-    val genres: NetworkGenres,
+    val genres: List<GenreDTO>,
     val runtime:String?,
 )
+
+
 
 fun DetailsDTO.asDomainDetails(): Details {
     return Details(
@@ -25,7 +28,7 @@ fun DetailsDTO.asDomainDetails(): Details {
         date = this.releaseDate?:"",
         voteAverage = this.voteAverage,
         overview = this.overview ?: "",
-        genres = this.genres.asDomainGenre(),
+        genres = this.genres.asDomainList(),
         runtime = runtime?:"",
 
     )

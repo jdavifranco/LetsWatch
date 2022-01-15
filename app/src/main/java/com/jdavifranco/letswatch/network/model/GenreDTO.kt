@@ -13,8 +13,8 @@ data class GenreDTO(
 @JsonClass(generateAdapter = true)
 data class NetworkGenres(@Json(name= "genres")val genres: List<GenreDTO>)
 
-fun NetworkGenres.asDomainGenre():List<Genre>{
-    return genres.map {
+fun List<GenreDTO>.asDomainList():List<Genre>{
+    return map {
         Genre(
             id = it.id,
             name = it.name
