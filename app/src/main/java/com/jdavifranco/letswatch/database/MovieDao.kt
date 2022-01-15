@@ -1,6 +1,8 @@
 package com.jdavifranco.letswatch.database
 
 import androidx.room.*
+import com.jdavifranco.letswatch.database.model.Details
+import com.jdavifranco.letswatch.database.model.Genre
 
 @Dao
 interface MovieDao {
@@ -24,5 +26,5 @@ interface MovieDao {
     fun getAllMovies():List<Movie>
 
     @Query(value = "select * from movies_table where id= :id")
-    suspend fun getMovieById(id: Long):Movie
+    suspend fun getMovieById(id: Long): Details
 }

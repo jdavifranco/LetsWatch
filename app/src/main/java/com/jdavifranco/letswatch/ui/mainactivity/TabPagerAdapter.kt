@@ -3,7 +3,7 @@ package com.jdavifranco.letswatch.ui.mainactivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jdavifranco.letswatch.database.Genre
+import com.jdavifranco.letswatch.database.model.Genre
 import com.jdavifranco.letswatch.ui.gallery.GalleryFragment
 
 class TabPagerAdapter(activity: FragmentActivity, private val listGenres:List<Genre>): FragmentStateAdapter(activity) {
@@ -12,7 +12,7 @@ class TabPagerAdapter(activity: FragmentActivity, private val listGenres:List<Ge
     }
 
     override fun createFragment(position: Int): Fragment {
-        val query = listGenres.get(position).id.toString()
+        val query = listGenres[position].id.toString()
         return GalleryFragment.newInstance(query)
     }
 

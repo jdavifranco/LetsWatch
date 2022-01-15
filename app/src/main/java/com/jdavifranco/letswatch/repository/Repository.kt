@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jdavifranco.letswatch.database.Genre
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.database.MovieDao
+import com.jdavifranco.letswatch.database.model.Details
+import com.jdavifranco.letswatch.database.model.Genre
 import com.jdavifranco.letswatch.network.MoviesService
-import com.jdavifranco.letswatch.network.asDatabaseMovieModel
-import com.jdavifranco.letswatch.network.asDetalhesDomain
-import com.jdavifranco.letswatch.network.asDomainGenre
+import com.jdavifranco.letswatch.network.model.asDomainDetails
+import com.jdavifranco.letswatch.network.model.asDomainGenre
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -32,7 +32,6 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
         ).flow
     }
 
-    //function to get genres if not in database
     suspend fun getMoviesGenres() {
         withContext(Dispatchers.IO) {
             val dbGenres = movieDao.getAllGenres()
@@ -52,10 +51,9 @@ class Repository(private val moviesService: MoviesService, private val movieDao:
 
 
 
-    suspend fun getMovieAndDetailsById(id:Long):Movie{
-       val movieNetwork = moviesService.getMovieById(id)
-        val movieDomain = movieNetwork.asDatabaseMovieModel()
-        movieDomain.detalhes = movieNetwork.asDetalhesDomain()
-        return movieDomain
+    suspend fun getMovieAndDetailsById(id:Long): Details {
+       val detailsNetwork = moviesService.getMovieById(id)
+        val detailsDomain = detailsNetwork.asDomainDetails()
+        return detailsDomain
     }
 }

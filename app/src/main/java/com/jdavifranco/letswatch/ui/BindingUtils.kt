@@ -1,7 +1,5 @@
 package com.jdavifranco.letswatch.ui
 
-import android.annotation.SuppressLint
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -9,13 +7,12 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jdavifranco.letswatch.R
-import com.jdavifranco.letswatch.database.Movie
-
+import com.jdavifranco.letswatch.database.model.Details
 
 
 @BindingAdapter("voteAverage")
-fun bindMovieVote(textView: TextView, movie: Movie?){
-    movie?.let { textView.text = it.voteAverage.toString()}
+fun bindMovieVote(textView: TextView, voteAverage: Double){
+    textView.text = voteAverage.toString()
 }
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -33,35 +30,27 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 
 
 @BindingAdapter("yearAndRuntime")
-fun bindYearRuntime(textView: TextView, movie: Movie?){
-    movie?.let {
-        val year = movie.date.subSequence(0, 4)
-        val runtime = if (movie.detalhes == null) null else movie.detalhes?.runtime
-        if (runtime == null) {
-            textView.text = year
-        } else {
+fun bindYearRuntime(textView: TextView, details: Details?){
+    details?.let {
+        val year = it.date.subSequence(0, 4)
+        val runtime = it.runtime
             textView.text = "$year - $runtime min"
-        }
     }
 }
 
 @BindingAdapter("bindOverview")
-fun bindOverview(textView: TextView, movie:Movie?){
-    movie?.let {
-        val overview = movie.detalhes?.overview
-        if (overview != null) {
-            textView.text = "Overview: $overview"
-        } else {
-            textView.text = ""
-        }
+fun bindOverview(textView: TextView, details:Details?){
+    details?.let {
+            textView.text = "Overview: ${it.overview}"
+
     }
 }
 
 @BindingAdapter("bindGenres")
-fun bindGenres(textView: TextView, movie:Movie?){
-    movie?.let {
-        var genre = movie.detalhes?.genres
-        genre = genre?.trim('[', ']')
+fun bindGenres(textView: TextView, details:Details?){
+    details?.let {
+        var genre = it.genres.toString()
+        genre = genre.trim('[', ']')
         textView.text = "Genres: "+genre
     }
 }

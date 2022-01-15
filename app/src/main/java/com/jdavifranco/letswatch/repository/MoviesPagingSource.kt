@@ -4,12 +4,11 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.network.MoviesService
-import com.jdavifranco.letswatch.network.asDatabaseModel
+import com.jdavifranco.letswatch.network.model.asDomainMovies
 
 import okio.IOException
 import retrofit2.HttpException
 
-//Page index for the first request
 private const val MOVIES_STARTING_PAGE_INDEX = 1
 const val MOVIES_PAGE_SIZE = 5
 class MoviesPagingSource (
@@ -23,7 +22,7 @@ class MoviesPagingSource (
             val response = if(apiQuery=="-1") moviesService.getPopularMovies(position)
             else moviesService.getMoviesOfGenre(apiQuery,position)
 
-            val movies = response.asDatabaseModel()
+            val movies = response.asDomainMovies()
             val nextKey = if(movies.isEmpty()){
                 null
             } else{
@@ -41,11 +40,7 @@ class MoviesPagingSource (
         }
     }
 
-    // The refresh key is used for subsequent refresh calls to PagingSource.load after the initial load
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
-        // We need to get the previous key (or next key if previous is null) of the page
-        // that was closest to the most recently accessed index.
-        // Anchor position is the most recently accessed index
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

@@ -12,7 +12,7 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel() {
         refreshGenres()
     }
 
-    fun refreshGenres(){
+    private fun refreshGenres(){
         viewModelScope.launch {
             repository.getMoviesGenres()
         }

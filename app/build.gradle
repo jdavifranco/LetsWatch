@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
         applicationId "com.jdavifranco.letswatch"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -37,14 +37,9 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     //Dependency injection KOIN
-    // Koin for Kotlin apps
     implementation "io.insert-koin:koin-core:$version_koin"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    // Testing
-    testImplementation "io.insert-koin:koin-test:$version_koin"
-    implementation "io.insert-koin:koin-android:$version_koin"
 
     //Retrofit dependencies
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
@@ -52,7 +47,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
-    testImplementation 'org.junit.jupiter:junit-jupiter'
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$version_moshi"
 
     //Glide
@@ -72,13 +66,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
 
     //Paging Library for efficiente listing of data
-    implementation("androidx.paging:paging-runtime:$version_paging")
-    testImplementation("androidx.paging:paging-common:$version_paging")
+    implementation("androidx.paging:paging-runtime-ktx:$version_paging")
+    testImplementation("androidx.paging:paging-common-ktx:$version_paging")
 
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
+    // Testing
+    testImplementation "io.insert-koin:koin-test:$version_koin"
+    implementation "io.insert-koin:koin-android:$version_koin"
+
+    implementation "androidx.core:core-ktx:$version_core"
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
     testImplementation 'junit:junit:4.13.2'
     testImplementation "com.google.truth:truth:1.1.3"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

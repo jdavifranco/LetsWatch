@@ -5,8 +5,8 @@ xmlns:tools="http://schemas.android.com/tools">
 
 <data>
     <variable
-        name="movie"
-        type="com.jdavifranco.letswatch.database.Movie" />
+        name="details"
+        type="com.jdavifranco.letswatch.database.model.Details" />
 </data>
 <ScrollView
     android:background="@color/white"
@@ -45,7 +45,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_height="match_parent"
                 android:contentDescription="@string/img_content_description"
                 android:scaleType="fitXY"
-                app:imageUrl="@{movie.poster}"
+                app:imageUrl="@{details.poster}"
                 tools:src="@tools:sample/avatars" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -72,7 +72,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:fontFamily="@font/urbanistbold"
             android:maxLines="3"
             android:singleLine="false"
-            android:text="@{movie.title}"
+            android:text="@{details.title}"
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/txtVoteAverage"
@@ -89,7 +89,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:textColor="@color/design_default_color_primary_variant"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-            app:yearAndRuntime="@{movie}"
+            app:yearAndRuntime="@{details}"
             tools:text=" 2021 - 120min" />
 
         <TextView
@@ -109,7 +109,7 @@ xmlns:tools="http://schemas.android.com/tools">
             app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:voteAverage="@{movie}"
+            app:voteAverage="@{details.voteAverage}"
             tools:text="7.7" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -127,7 +127,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:fontFamily="@font/urbanistmedium"
             android:textColor="@color/design_default_color_primary_variant"
             android:textSize="16sp"
-            app:bindOverview="@{movie}"
+            app:bindOverview="@{details}"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -141,7 +141,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_marginTop="16dp"
             android:fontFamily="@font/urbanistitalic"
             android:textColor="@color/design_default_color_primary_variant"
-            app:bindGenres="@{movie}"
+            app:bindGenres="@{details}"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/txtOverview"
             tools:text="Drama, Ação e Romance" />

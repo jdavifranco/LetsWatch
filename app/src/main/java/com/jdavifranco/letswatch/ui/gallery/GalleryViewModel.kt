@@ -1,9 +1,6 @@
 package com.jdavifranco.letswatch.ui.gallery
 
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -11,7 +8,6 @@ import androidx.paging.cachedIn
 import com.jdavifranco.letswatch.database.Movie
 import com.jdavifranco.letswatch.repository.Repository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class GalleryViewModel(private val repository: Repository) : ViewModel() {
     private var currentQueryValue: String? = null

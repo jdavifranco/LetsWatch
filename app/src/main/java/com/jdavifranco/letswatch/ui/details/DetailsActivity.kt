@@ -17,8 +17,8 @@ class DetailsActivity : AppCompatActivity() {
 
         val movieId = intent.getLongExtra("MOVIE_ID", -1)
         if(movieId!=-1L){
-            viewModel.resfreshDetailsMovies(movieId)
-            viewModel.movie.observe(this, Observer {
+            viewModel.refreshDetails(movieId)
+            viewModel.details.observe(this, Observer {
                 binding.movie = it
             })
         }

@@ -12,7 +12,6 @@ interface MovieClickListener {
     fun onItemClick(id: Long)
 }
 
-//private var mMovieClickListener: MovieClickListener? = null
 
 class MoviesAdapter(var movieClickListener: MovieClickListener):PagingDataAdapter<Movie, MoviesAdapter.MoviesViewHolder>(DiffCallBackMovies()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -29,7 +28,7 @@ class MoviesAdapter(var movieClickListener: MovieClickListener):PagingDataAdapte
 
     class MoviesViewHolder(private val binding: GalleryItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item:Movie,  movieClickListener: MovieClickListener){
+        fun bind(item:Movie, movieClickListener: MovieClickListener){
             binding.movie = item
             binding.root.setOnClickListener { movieClickListener.onItemClick(id = item.id) }
             binding.executePendingBindings()
