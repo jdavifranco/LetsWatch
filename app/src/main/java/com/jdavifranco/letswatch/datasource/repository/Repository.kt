@@ -1,24 +1,19 @@
 package com.jdavifranco.letswatch.datasource.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jdavifranco.letswatch.datasource.local.Movie
-import com.jdavifranco.letswatch.datasource.local.model.Details
-import com.jdavifranco.letswatch.datasource.local.model.Genre
-import com.jdavifranco.letswatch.datasource.mappers.toLocal
+import com.jdavifranco.letswatch.datasource.mappers.toDomain
 import com.jdavifranco.letswatch.datasource.remote.RemoteDataSource
-import kotlinx.coroutines.Dispatchers
+import com.jdavifranco.letswatch.domain.model.Details
+import com.jdavifranco.letswatch.domain.model.Genre
+import com.jdavifranco.letswatch.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.withContext
+import kotlin.Exception
 
-class Repository(private val remoteDataSource: RemoteDataSource) {
-
-    private val _genreList = MutableLiveData<List<Genre>>()
-    val genreList:LiveData<List<Genre>>
-    get() = _genreList
+class Repository(
+    private val remoteDataSource: RemoteDataSource,
+    ) {
 
     fun getMoviesStream(query: String): Flow<PagingData<Movie>> {
         return Pager(
@@ -30,19 +25,18 @@ class Repository(private val remoteDataSource: RemoteDataSource) {
         ).flow
     }
 
-    suspend fun getMoviesGenres() {
-        withContext(Dispatchers.IO) {
-            val popular = Genre(-1, "POPULAR")
-            val genreList = mutableListOf(popular)
-            genreList.addAll(remoteDataSource.getMovieGenres().toLocal())
-            _genreList.postValue(genreList)
-            }
 
+    suspend fun getMoviesGenres() :List<Genre> {
+        try {
+           return remoteDataSource.getGenreList().toDomain()
+        }catch (e:Exception){
+            throw e
+       }
     }
 
 
     suspend fun getMovieDetails(id: Long): Details {
         val detailsRM = remoteDataSource.getMovieDetails(id)
-        return detailsRM.toLocal()
+        return detailsRM.toDomain()
     }
 }

@@ -1,12 +1,12 @@
-package com.jdavifranco.letswatch.views.moviegallery
+package com.jdavifranco.letswatch.ui.moviegallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.jdavifranco.letswatch.datasource.local.Movie
 import com.jdavifranco.letswatch.databinding.GalleryItemLayoutBinding
+import com.jdavifranco.letswatch.domain.model.Movie
 
 
 class MoviesAdapter(var clickListener: MovieClickListener)

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jdavifranco.letswatch.views.moviegallery.GalleryViewModel" />
+            type="com.jdavifranco.letswatch.ui.moviegallery.GalleryViewModel" />
         <variable
             name="movie"
-            type="com.jdavifranco.letswatch.datasource.local.Movie" />
+            type="com.jdavifranco.letswatch.domain.model.Movie" />
     </data>
 
 <LinearLayout

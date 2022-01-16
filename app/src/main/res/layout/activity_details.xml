@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="details"
-        type="com.jdavifranco.letswatch.datasource.local.model.Details" />
+        type="com.jdavifranco.letswatch.domain.model.Details" />
 </data>
 <ScrollView
     android:background="@color/white"

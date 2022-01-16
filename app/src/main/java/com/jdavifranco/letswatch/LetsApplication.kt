@@ -15,7 +15,6 @@ class LetsApplication: Application() {
             androidContext(applicationContext)
             modules(
                 networkModule,
-                databaseModule,
                 repositoryModule,
                 viewModelModule
             )

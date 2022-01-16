@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LetsWatch">
-        <activity android:name=".views.moviedetails.DetailsActivity" />
-        <activity android:name=".views.main.MainActivity"
+        <activity android:name=".ui.moviedetails.DetailsActivity" />
+        <activity android:name=".ui.main.MainActivity"
             android:exported="true"
             >
             <intent-filter>

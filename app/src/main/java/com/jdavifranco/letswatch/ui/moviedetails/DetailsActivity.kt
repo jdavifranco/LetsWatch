@@ -1,8 +1,7 @@
-package com.jdavifranco.letswatch.views.moviedetails
+package com.jdavifranco.letswatch.ui.moviedetails
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.jdavifranco.letswatch.databinding.ActivityDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
