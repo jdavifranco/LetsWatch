@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.ui
+package com.jdavifranco.letswatch.ui.utils
 
 import android.widget.ImageView
 import android.widget.TextView

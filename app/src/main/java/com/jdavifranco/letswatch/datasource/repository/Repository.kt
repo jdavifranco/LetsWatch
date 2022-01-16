@@ -3,7 +3,6 @@ package com.jdavifranco.letswatch.datasource.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.jdavifranco.letswatch.datasource.local.LocalDataSource
 import com.jdavifranco.letswatch.datasource.mappers.toDomain
 import com.jdavifranco.letswatch.datasource.remote.RemoteDataSource
 import com.jdavifranco.letswatch.domain.model.Details

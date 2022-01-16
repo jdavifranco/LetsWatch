@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.views.main
+package com.jdavifranco.letswatch.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jdavifranco.letswatch.R
-import com.jdavifranco.letswatch.ui.main.MainActivityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

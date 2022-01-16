@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val repository: Repository) : ViewModel() {
     private var _details = MutableLiveData<Details>()
-    val detailsLM: LiveData<Details>
+    val details: LiveData<Details>
         get() = _details
 
     fun refreshDetails(id:Long){
