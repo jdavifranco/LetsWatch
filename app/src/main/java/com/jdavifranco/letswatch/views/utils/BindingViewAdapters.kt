@@ -49,8 +49,8 @@ fun bindOverview(textView: TextView, details:Details?){
 @BindingAdapter("bindGenres")
 fun bindGenres(textView: TextView, details:Details?){
     details?.let {
-        var genre = it.genres.toString()
-        genre = genre.trim('[', ']')
-        textView.text = "Genres: "+genre
+        var genres = it.genres.map { it.name }.toString()
+        genres = genres.trim('[', ']')
+        textView.text = "Genres: "+genres
     }
 }
