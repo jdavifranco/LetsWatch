@@ -21,7 +21,6 @@ Libraries Used
   * [Data Binding][2] - Declaratively bind observable data to UI elements.
   * [Lifecycles][3] - Create a UI that automatically responds to lifecycle events.
   * [LiveData][4] - Build data objects that notify views when the underlying database changes.
-  * [Room][5] - Access app's SQLite database with in-app objects and compile-time checks.
   * [ViewModel][6] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
      asynchronous tasks for optimal execution.
   * [Paging][7] -The Paging Library helps load and display small chunks of data at a time.
@@ -35,7 +34,6 @@ Libraries Used
 [2]: https://developer.android.com/topic/libraries/data-binding/
 [3]: https://developer.android.com/topic/libraries/architecture/lifecycle
 [4]: https://developer.android.com/topic/libraries/architecture/livedata
-[5]: https://developer.android.com/topic/libraries/architecture/room
 [6]: https://developer.android.com/topic/libraries/architecture/viewmodel
 [7]: https://developer.android.com/topic/libraries/architecture/paging/v3-overview?hl=en
 [8]: https://kotlinlang.org/docs/reference/coroutines-overview.html
