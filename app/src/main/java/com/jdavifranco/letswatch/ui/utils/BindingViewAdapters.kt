@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.views
+package com.jdavifranco.letswatch.ui
 
 import android.widget.ImageView
 import android.widget.TextView
@@ -7,7 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jdavifranco.letswatch.R
-import com.jdavifranco.letswatch.datasource.local.model.Details
+import com.jdavifranco.letswatch.domain.model.Details
 
 
 @BindingAdapter("voteAverage")
@@ -39,7 +39,7 @@ fun bindYearRuntime(textView: TextView, details: Details?){
 }
 
 @BindingAdapter("bindOverview")
-fun bindOverview(textView: TextView, details:Details?){
+fun bindOverview(textView: TextView, details: Details?){
     details?.let {
             textView.text = "Overview: ${it.overview}"
 
@@ -47,9 +47,9 @@ fun bindOverview(textView: TextView, details:Details?){
 }
 
 @BindingAdapter("bindGenres")
-fun bindGenres(textView: TextView, details:Details?){
+fun bindGenres(textView: TextView, details: Details?){
     details?.let {
-        var genres = it.genres.map { it.name }.toString()
+        var genres = it.genreLMS.map { it.name }.toString()
         genres = genres.trim('[', ']')
         textView.text = "Genres: "+genres
     }

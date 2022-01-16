@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
+import com.jdavifranco.letswatch.ui.moviegallery.GalleryViewModel
 import com.jdavifranco.letswatch.views.moviedetails.DetailsActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
@@ -51,13 +52,6 @@ class GalleryFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            searchQuery = it.getString(SEARCH_QUERY_ARG)?: INITIAL_SEARCH_QUERY
-        }
-    }
-
     private fun movieClickListener():MovieClickListener{
 
         val movieClickListener: MovieClickListener = object : MovieClickListener {
@@ -69,6 +63,13 @@ class GalleryFragment : Fragment() {
         }
 
         return movieClickListener
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            searchQuery = it.getString(SEARCH_QUERY_ARG)?: INITIAL_SEARCH_QUERY
+        }
     }
 
     companion object{

@@ -13,32 +13,32 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class MovieDatabaseTest : TestCase(){
-    private lateinit var movieDatabase:MovieDatabase
-    private lateinit var movieDao:MovieDao
+class MovieLMDatabaseTest : TestCase(){
+    private lateinit var localDataSource:LocalDataSource
+    private lateinit var localDao:LocalDao
 
     @Before
     fun initDatabase() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        movieDatabase = Room.inMemoryDatabaseBuilder(context, MovieDatabase::class.java).build()
-        movieDao = movieDatabase.movieDao
+        localDataSource = Room.inMemoryDatabaseBuilder(context, LocalDataSource::class.java).build()
+        localDao = localDataSource.localDao
         super.setUp()
     }
 
     @After
     fun closeMovieDb(){
-        movieDatabase.close()
+        localDataSource.close()
     }
 
     @Test
     fun getAllMovies() = runBlocking{
 
-        val listMovie = mutableListOf(Movie(1, "Movie 1", "", "", 1.0),
-            Movie(2, "Movie 2", "", "", 1.0),Movie(3, "Movie 3", "", "", 1.0),
-            Movie(4, "Movie 4", "", "", 1.0),)
-        movieDao.insertAll(listMovie)
+        val listMovie = mutableListOf(MovieLM(1, "Movie 1", "", "", 1.0),
+            MovieLM(2, "Movie 2", "", "", 1.0),MovieLM(3, "Movie 3", "", "", 1.0),
+            MovieLM(4, "Movie 4", "", "", 1.0),)
+        localDao.insertAll(listMovie)
 
-        assertThat(movieDao.getAllMovies().size==listMovie.size).isTrue()
+        assertThat(localDao.getAllMovies().size==listMovie.size).isTrue()
     }
 
 

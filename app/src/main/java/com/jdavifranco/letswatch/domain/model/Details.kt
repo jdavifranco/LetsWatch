@@ -1,14 +1,13 @@
-package com.jdavifranco.letswatch.datasource.local.model
+package com.jdavifranco.letswatch.domain.model
 
-import androidx.room.PrimaryKey
 
 data class Details(
-    @PrimaryKey val id:Long,
+    val id:Long,
     val title:String,
     val poster:String,
     val date:String,
     val voteAverage:Double,
     var overview:String,
-    var genres: List<Genre>,
+    var genreLMS: List<Genre>,
     var runtime:String,
 )

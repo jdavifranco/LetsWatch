@@ -2,8 +2,8 @@ package com.jdavifranco.letswatch.views.moviedetails
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.jdavifranco.letswatch.databinding.ActivityDetailsBinding
+import com.jdavifranco.letswatch.ui.moviedetails.DetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailsActivity : AppCompatActivity() {
@@ -20,7 +20,7 @@ class DetailsActivity : AppCompatActivity() {
 
         if(detailsQuery!= DETAILS_DEFAULT_QUERY_ARG) {
             viewModel.refreshDetails(detailsQuery)
-            viewModel.details.observe(this, {
+            viewModel.detailsLM.observe(this, {
                 binding.details = it
             })
         }
