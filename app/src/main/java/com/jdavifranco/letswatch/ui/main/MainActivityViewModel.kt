@@ -6,7 +6,7 @@ import com.jdavifranco.letswatch.datasource.repository.Repository
 
 class MainActivityViewModel(private val repository: Repository) : ViewModel() {
     val genreList = liveData {
-        emit(repository.getMoviesGenres())
+        emit(repository.getGenreList())
     }
 
 }

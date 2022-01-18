@@ -9,6 +9,7 @@ import com.jdavifranco.letswatch.domain.model.Details
 import com.jdavifranco.letswatch.domain.model.Genre
 import com.jdavifranco.letswatch.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
+import retrofit2.HttpException
 import kotlin.Exception
 
 class Repository(
@@ -26,10 +27,10 @@ class Repository(
     }
 
 
-    suspend fun getMoviesGenres() :List<Genre> {
+    suspend fun getGenreList() :List<Genre> {
         try {
            return remoteDataSource.getGenreList().toDomain()
-        }catch (e:Exception){
+        }catch (e:HttpException){
             throw e
        }
     }

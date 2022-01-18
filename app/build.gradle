@@ -38,50 +38,55 @@ android {
 
 dependencies {
     //Dependency injection KOIN
-    implementation "io.insert-koin:koin-core:$version_koin"
+    implementation "io.insert-koin:koin-core:$koin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //Retrofit dependencies
-    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines"
-    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
-    implementation "com.squareup.moshi:moshi:$version_moshi"
-    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$version_moshi"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofit_coroutines_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     //Glide
-    implementation "com.github.bumptech.glide:glide:$version_glide"
-    kapt "com.github.bumptech.glide:compiler:$version_glide"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     //Kotlin coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutines"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
 
     //Room and lifecyle dependecies
-    implementation "androidx.room:room-runtime:$version_room"
-    implementation "androidx.room:room-ktx:$version_room"
-    kapt "androidx.room:room-compiler:$version_room"
-    annotationProcessor "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     //Paging Library for efficiente listing of data
-    implementation("androidx.paging:paging-runtime-ktx:$version_paging")
-    testImplementation("androidx.paging:paging-common-ktx:$version_paging")
+    implementation("androidx.paging:paging-runtime-ktx:$paging_version")
+    testImplementation("androidx.paging:paging-common-ktx:$paging_version")
 
-    // Testing
-    testImplementation "io.insert-koin:koin-test:$version_koin"
-    implementation "io.insert-koin:koin-android:$version_koin"
-
-    implementation "androidx.core:core-ktx:$version_core"
-    implementation "androidx.appcompat:appcompat:$version_appcompat"
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
-    testImplementation 'junit:junit:4.13.2'
+    // Test Dependencies
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    testImplementation 'androidx.test:core:1.4.0'
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "junit:junit:$junit_version"
     testImplementation "com.google.truth:truth:1.1.3"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_version"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation "com.google.truth:truth:1.1.3"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
 }
