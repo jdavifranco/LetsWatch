@@ -8,12 +8,11 @@ chosen by changing tabs, and the details screen shows the details of the chosen 
 
 The app is currently under development.
 
-Screenshots
 -----------
 #### Gallery of Movies
-<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screensho1.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot2.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot3.png" width="33%"></img> 
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/gallery_gif.gif" width="33%"></img> 
 #### Details Of A Movie
-<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot4.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot5.png" width="33%"></img> <img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/Screenshot6.png" width="33%"></img> 
+<img src="https://github.com/jdavifranco/LetsWatch/blob/main/app/src/screenshots/details_gif.gif" width="33%"></img> 
 
 
 Libraries Used
