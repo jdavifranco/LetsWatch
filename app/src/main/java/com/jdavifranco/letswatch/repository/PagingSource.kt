@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.datasource.repository
+package com.jdavifranco.letswatch.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

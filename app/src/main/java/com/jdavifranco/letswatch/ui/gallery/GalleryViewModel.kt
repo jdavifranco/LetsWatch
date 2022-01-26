@@ -1,11 +1,11 @@
-package com.jdavifranco.letswatch.ui.moviegallery
+package com.jdavifranco.letswatch.ui.gallery
 
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.jdavifranco.letswatch.datasource.repository.Repository
+import com.jdavifranco.letswatch.repository.Repository
 import com.jdavifranco.letswatch.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 

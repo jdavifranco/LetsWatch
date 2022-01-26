@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.ui.moviedetails
+package com.jdavifranco.letswatch.ui.details
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

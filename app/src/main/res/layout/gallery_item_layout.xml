@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jdavifranco.letswatch.ui.moviegallery.GalleryViewModel" />
+            type="com.jdavifranco.letswatch.ui.gallery.GalleryViewModel" />
         <variable
             name="movie"
             type="com.jdavifranco.letswatch.domain.model.Movie" />

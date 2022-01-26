@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.datasource.repository
+package com.jdavifranco.letswatch.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -12,14 +12,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlin.Exception
 
 class Repository(
-    private val remoteDataSource: RemoteDataSource,
-    ) {
+    private val remoteDataSource: RemoteDataSource) {
 
     fun getMoviesStream(query: String): Flow<PagingData<Movie>> {
         return Pager(
             config = PagingConfig(
                 pageSize = MOVIES_PAGE_SIZE,
-                enablePlaceholders = false
+                enablePlaceholders = false,
             ),
             pagingSourceFactory = { PagingSource(remoteDataSource, query) }
         ).flow
