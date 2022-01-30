@@ -1,5 +1,6 @@
 package com.jdavifranco.letswatch.ui.utils
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -9,6 +10,31 @@ import com.bumptech.glide.request.RequestOptions
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.domain.model.Details
 
+
+@BindingAdapter("visibilityState")
+fun bindResponseState(view:View, responseState: ResponseState<Any>?){
+    responseState?.let {
+        when(it){
+            is ResponseState.Loading->{
+                view.findViewById<View>(R.id.loading_state).visibility = View.VISIBLE
+                view.findViewById<View>(R.id.success_state).visibility = View.GONE
+                view.findViewById<View>(R.id.error_state).visibility = View.GONE
+            }
+            is ResponseState.Error->{
+                view.findViewById<View>(R.id.loading_state).visibility = View.GONE
+                view.findViewById<View>(R.id.success_state).visibility = View.GONE
+                view.findViewById<View>(R.id.error_state).visibility = View.VISIBLE
+            }
+            is ResponseState.Success->{
+                view.findViewById<View>(R.id.loading_state).visibility = View.GONE
+                view.findViewById<View>(R.id.success_state).visibility = View.VISIBLE
+                view.findViewById<View>(R.id.error_state).visibility = View.GONE
+            }
+        }
+
+    }
+
+}
 
 @BindingAdapter("voteAverage")
 fun bindMovieVote(textView: TextView, voteAverage: Double){
