@@ -4,14 +4,12 @@ import androidx.lifecycle.*
 import com.jdavifranco.letswatch.domain.model.Genre
 import com.jdavifranco.letswatch.repository.Repository
 import com.jdavifranco.letswatch.ui.utils.*
-import com.jdavifranco.letswatch.ui.utils.Loading
-import com.jdavifranco.letswatch.ui.utils.Success
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MainActivityViewModel(private val repository: Repository) : ViewModel() {
-    private val _responseState = MutableLiveData<ResponseState>()
-    val responseState:LiveData<ResponseState>
+    private val _responseState = MutableLiveData<ResponseState<List<Genre>>>()
+    val responseState:LiveData<ResponseState<List<Genre>>>
         get()  = _responseState
 
     init {
@@ -19,16 +17,16 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun fetchGenreList(){
-        _responseState.postValue(Loading())
+        _responseState.postValue(ResponseState.Loading)
         viewModelScope.launch {
             try {
                 _responseState.postValue(
-                    Success(
-                        genreList = repository.getGenreList()
+                    ResponseState.Success(
+                        result = repository.getGenreList()
                     )
                 )
             }catch (e:Exception){
-                _responseState.postValue(Error())
+                _responseState.postValue(ResponseState.Error(error = e))
             }
         }
     }
@@ -36,4 +34,3 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel() {
 
 }
 
-data class Success(val genreList:List<Genre>):Success()
