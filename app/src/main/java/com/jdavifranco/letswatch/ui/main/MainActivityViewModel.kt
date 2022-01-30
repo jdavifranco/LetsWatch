@@ -24,7 +24,7 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel() {
             try {
                 _responseState.postValue(
                     Success(
-                        genreList = repository.getMoviesGenres()
+                        genreList = repository.getGenreList()
                     )
                 )
             }catch (e:Exception){
