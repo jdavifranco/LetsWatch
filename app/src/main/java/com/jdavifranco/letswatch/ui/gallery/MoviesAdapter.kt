@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.ui.moviegallery
+package com.jdavifranco.letswatch.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -2,4 +2,5 @@
     <string name="app_name">LetsWatch</string>
     <string name="imageDescription">The poster of the movie</string>
     <string name="img_content_description">Movie image</string>
+    <string name ="internet_conection_error_text"> An error occurred, please verify your connection and try again</string>
 </resources>

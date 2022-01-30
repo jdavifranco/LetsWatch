@@ -1,6 +1,6 @@
 package com.jdavifranco.letswatch.di
 
-import com.jdavifranco.letswatch.datasource.repository.Repository
+import com.jdavifranco.letswatch.repository.Repository
 import org.koin.dsl.module
 
 

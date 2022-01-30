@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.ui.moviegallery
+package com.jdavifranco.letswatch.ui.gallery
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
-import com.jdavifranco.letswatch.ui.moviedetails.DetailsActivity
+import com.jdavifranco.letswatch.ui.details.DetailsActivity
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

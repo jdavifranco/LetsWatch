@@ -1,4 +1,4 @@
-package com.jdavifranco.letswatch.ui.moviegallery
+package com.jdavifranco.letswatch.ui.gallery
 
 interface MovieClickListener{
     fun onMovieClick(id:Long)
