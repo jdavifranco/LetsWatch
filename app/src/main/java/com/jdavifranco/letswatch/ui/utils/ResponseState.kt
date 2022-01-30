@@ -1,9 +1,7 @@
 package com.jdavifranco.letswatch.ui.utils
 
-abstract class ResponseState
-
-abstract class Success:ResponseState()
-
-class Loading:ResponseState()
-
-class Error:ResponseState()
+sealed class ResponseState<out T: Any>{
+    object Loading: ResponseState<Nothing>()
+    data class Error(val error:Throwable): ResponseState<Nothing>()
+    data class Success<out T:Any>(val result: T): ResponseState<T>()
+}
