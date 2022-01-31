@@ -7,16 +7,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.jdavifranco.letswatch.repository.Repository
+import com.jdavifranco.letswatch.domain.datarepository.MovieDataRepository
+import com.jdavifranco.letswatch.repository.MovieRepository
 import com.jdavifranco.letswatch.domain.model.Movie
 import com.jdavifranco.letswatch.ui.utils.ResponseState
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class GalleryViewModel(private val repository: Repository) : ViewModel() {
+class GalleryViewModel(private val repository: MovieDataRepository) : ViewModel() {
     private var _responseState = MutableLiveData<ResponseState<Flow<PagingData<Movie>>>>()
     val responseState:LiveData<ResponseState<Flow<PagingData<Movie>>>> get() = _responseState
 
@@ -43,7 +41,7 @@ class GalleryViewModel(private val repository: Repository) : ViewModel() {
         }
         currentQueryValue = queryString
 
-        val newResult: Flow<PagingData<Movie>> = repository.getMoviesStream(queryString)
+        val newResult: Flow<PagingData<Movie>> = repository.getMovieStream(queryString)
             .cachedIn(viewModelScope)
         currentSearchResult = newResult
 

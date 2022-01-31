@@ -1,13 +1,14 @@
 package com.jdavifranco.letswatch.ui.main
 
 import androidx.lifecycle.*
+import com.jdavifranco.letswatch.domain.datarepository.MovieDataRepository
 import com.jdavifranco.letswatch.domain.model.Genre
-import com.jdavifranco.letswatch.repository.Repository
+import com.jdavifranco.letswatch.repository.MovieRepository
 import com.jdavifranco.letswatch.ui.utils.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MainActivityViewModel(private val repository: Repository) : ViewModel() {
+class MainActivityViewModel(private val repository: MovieDataRepository) : ViewModel() {
     private val _responseState = MutableLiveData<ResponseState<List<Genre>>>()
     val responseState:LiveData<ResponseState<List<Genre>>>
         get()  = _responseState
@@ -22,7 +23,7 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel() {
             try {
                 _responseState.postValue(
                     ResponseState.Success(
-                        result = repository.getGenreList()
+                        result = repository.getMovieGenreList()
                     )
                 )
             }catch (e:Exception){
