@@ -1,10 +1,10 @@
-package com.jdavifranco.letswatch.repository
+package com.jdavifranco.letswatch.ui.gallery
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.jdavifranco.letswatch.datasource.mappers.toDomain
-import com.jdavifranco.letswatch.datasource.remote.RemoteDataSource
+import com.jdavifranco.letswatch.domain.data.MovieDataRepository
 import com.jdavifranco.letswatch.domain.model.Movie
+import com.jdavifranco.letswatch.domain.usecase.GetMovieListByGenreUC
 
 import okio.IOException
 import retrofit2.HttpException
@@ -12,7 +12,7 @@ import retrofit2.HttpException
 private const val MOVIES_STARTING_PAGE_INDEX = 1
 const val MOVIES_PAGE_SIZE = 5
 class PagingSource (
-    private val remoteDataSource: RemoteDataSource,
+    private val getMovieListByGenreUC: GetMovieListByGenreUC,
     private val query: String
     ) :PagingSource<Int, Movie>(){
 
@@ -21,9 +21,7 @@ class PagingSource (
         val apiQuery = query
 
         return try {
-            val movieList = remoteDataSource
-                .getMoviesByGenre(apiQuery,position)
-                .toDomain()
+            val movieList = getMovieListByGenreUC.invoke(apiQuery,position)
 
             val nextKey =
                 if(movieList.isEmpty()) null
@@ -36,7 +34,7 @@ class PagingSource (
             LoadResult.Page(
                 data = movieList,
                 prevKey = prevKey,
-                nextKey=nextKey,
+                nextKey = nextKey,
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)

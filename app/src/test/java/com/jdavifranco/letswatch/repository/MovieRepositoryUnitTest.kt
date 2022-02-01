@@ -4,22 +4,18 @@ import com.jdavifranco.letswatch.datasource.mappers.toDomain
 import com.jdavifranco.letswatch.datasource.remote.RemoteDataSource
 import com.jdavifranco.letswatch.datasource.remote.model.GenreListRM
 import com.jdavifranco.letswatch.datasource.remote.model.GenreRM
-import com.jdavifranco.letswatch.datasource.repository.Repository
-import com.jdavifranco.letswatch.domain.model.Genre
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.HttpException
 import kotlin.test.assertEquals
-import kotlin.test.assertFails
 import kotlin.test.assertFailsWith
 
 @RunWith(MockitoJUnitRunner::class)
-class RepositoryUnitTest {
+class MovieRepositoryUnitTest {
     private lateinit var remoteDataSource:RemoteDataSource
 
     @Before
@@ -36,7 +32,7 @@ class RepositoryUnitTest {
         `when`(remoteDataSource.getGenreList())
                 .thenReturn(genreListRM)
 
-        val repository = Repository(remoteDataSource)
+        val repository = MovieRepository(remoteDataSource)
         assertEquals(expected = genreListRM.toDomain(), actual = repository.getGenreList())
     }
 
@@ -46,7 +42,7 @@ class RepositoryUnitTest {
         `when`(remoteDataSource.getGenreList())
             .thenThrow(httpException)
 
-        val repository = Repository(remoteDataSource)
+        val repository = MovieRepository(remoteDataSource)
         assertFailsWith(exceptionClass = HttpException::class,
             block = {
                 repository.getGenreList()

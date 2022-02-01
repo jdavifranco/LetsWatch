@@ -1,9 +1,10 @@
 package com.jdavifranco.letswatch.di
 
-import com.jdavifranco.letswatch.repository.Repository
+import com.jdavifranco.letswatch.domain.data.MovieDataRepository
+import com.jdavifranco.letswatch.repository.MovieRepository
 import org.koin.dsl.module
 
 
 val repositoryModule = module {
-    single { Repository(get())}
+    single<MovieDataRepository> { MovieRepository(get())}
 }

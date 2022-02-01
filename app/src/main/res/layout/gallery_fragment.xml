@@ -6,13 +6,17 @@
         <variable
             name="responseState"
             type="com.jdavifranco.letswatch.ui.utils.ResponseState" />
-
+        <variable
+            name="viewModel"
+            type="com.jdavifranco.letswatch.ui.gallery.GalleryViewModel" />
+        <variable
+            name="movie"
+            type="com.jdavifranco.letswatch.domain.model.Movie" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         app:visibilityState="@{responseState}">
 
         <include android:id="@+id/loading_state"
@@ -27,13 +31,19 @@
             android:layout_width="match_parent"
             />
 
-        <include android:id="@+id/success_state"
-            layout="@layout/gallery_content"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:id="@+id/success_state"
             android:layout_width="match_parent"
-            />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMovies"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </LinearLayout>
-
+        </LinearLayout>
+    </FrameLayout>
 </layout>

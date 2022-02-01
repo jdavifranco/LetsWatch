@@ -1,2 +1,3 @@
 rootProject.name = "LetsWatch"
 include ':app'
+include ':core'
