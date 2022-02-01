@@ -2,35 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    >
 
     <TextView
         android:id="@+id/txtError"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="31dp"
-        android:text="@string/internet_conection_error_text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnReload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnReload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/internet_conection_error_text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnReload"
+        app:layout_constraintEnd_toEndOf="@+id/btnReload"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/btnReload"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReload"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="19dp"
         android:background="@color/purple_500"
-        android:drawableStart="@drawable/loading_img"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:text="Reload"
         android:textColor="@color/white"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/loading_img"
+        app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtError" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/txtError"
+        app:layout_constraintEnd_toEndOf="@+id/txtError"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtError"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_baseline_error_outline_64" />
 </androidx.constraintlayout.widget.ConstraintLayout>
