@@ -5,147 +5,172 @@ xmlns:tools="http://schemas.android.com/tools">
 
 <data>
     <variable
+        name="responseState"
+        type="com.jdavifranco.letswatch.ui.utils.ResponseState" />
+
+    <variable
         name="details"
         type="com.jdavifranco.letswatch.domain.model.Details" />
 </data>
-<ScrollView
-    android:background="@color/white"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".views.moviedetails.DetailsActivity">
+        android:layout_height="match_parent"
+        visibilityState="@{responseState}" >
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.45" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/imgCardDetail"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
-            android:layout_marginBottom="8dp"
-            android:alpha="@dimen/material_emphasis_high_type"
-            android:elevation="3dp"
-            app:cardBackgroundColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <include android:id="@+id/loading_state"
+            layout="@layout/loading_state_layout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
 
-            <ImageView
-                android:id="@+id/imgDetail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/img_content_description"
-                android:scaleType="fitXY"
-                app:imageUrl="@{details.poster}"
-                tools:src="@tools:sample/avatars" />
+        <include android:id="@+id/error_state"
+            layout="@layout/error_state_layout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            />
 
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
-
-        <TextView
-            android:id="@+id/txtTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/urbanistbold"
-            android:maxLines="3"
-            android:singleLine="false"
-            android:text="@{details.title}"
-            android:textColor="@color/design_default_color_primary_variant"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/txtVoteAverage"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            tools:text="Shang-Chi and the Legend of the Ten Rings" />
-
-        <TextView
-            android:id="@+id/txtYearRuntime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:fontFamily="@font/urbanistregular"
-            android:textColor="@color/design_default_color_primary_variant"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
-            app:yearAndRuntime="@{details}"
-            tools:text=" 2021 - 120min" />
-
-        <TextView
-            android:id="@+id/txtVoteAverage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="12dp"
+        <ScrollView
+            android:id="@+id/success_state"
             android:background="@color/white"
-            android:foregroundGravity="top|right"
-            android:gravity="center|start"
-            android:lineSpacingExtra="8sp"
-            android:textColor="@color/design_default_color_primary_variant"
-            android:textSize="10sp"
-            android:textStyle="bold"
-            android:typeface="normal"
-            app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:voteAverage="@{details.voteAverage}"
-            tools:text="7.7" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.47" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".views.moviedetails.DetailsActivity">
 
-        <TextView
-            android:id="@+id/txtOverview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/urbanistmedium"
-            android:textColor="@color/design_default_color_primary_variant"
-            android:textSize="16sp"
-            app:bindOverview="@{details}"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/txtYearRuntime"
-            tools:text='A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.' />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.45" />
 
-        <TextView
-            android:id="@+id/txtGenres"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/urbanistitalic"
-            android:textColor="@color/design_default_color_primary_variant"
-            app:bindGenres="@{details}"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/txtOverview"
-            tools:text="Drama, Ação e Romance" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/imgCardDetail"
+                    android:layout_width="0dp"
+                    android:layout_height="400dp"
+                    android:layout_marginBottom="8dp"
+                    android:alpha="@dimen/material_emphasis_high_type"
+                    android:elevation="3dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                    <ImageView
+                        android:id="@+id/imgDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/img_content_description"
+                        android:scaleType="fitXY"
+                        app:imageUrl="@{details.poster}"
+                        tools:src="@tools:sample/avatars" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95" />
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/urbanistbold"
+                    android:maxLines="3"
+                    android:singleLine="false"
+                    android:text="@{details.title}"
+                    android:textColor="@color/design_default_color_primary_variant"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@+id/txtVoteAverage"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    tools:text="Shang-Chi and the Legend of the Ten Rings" />
+
+                <TextView
+                    android:id="@+id/txtYearRuntime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="@font/urbanistregular"
+                    android:textColor="@color/design_default_color_primary_variant"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                    app:yearAndRuntime="@{details}"
+                    tools:text=" 2021 - 120min" />
+
+                <TextView
+                    android:id="@+id/txtVoteAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
+                    android:foregroundGravity="top|right"
+                    android:gravity="center|start"
+                    android:lineSpacingExtra="8sp"
+                    android:textColor="@color/design_default_color_primary_variant"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:voteAverage="@{details.voteAverage}"
+                    tools:text="7.7" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.47" />
+
+                <TextView
+                    android:id="@+id/txtOverview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/urbanistmedium"
+                    android:textColor="@color/design_default_color_primary_variant"
+                    android:textSize="16sp"
+                    app:bindOverview="@{details}"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtYearRuntime"
+                    tools:text='A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.' />
+
+                <TextView
+                    android:id="@+id/txtGenres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/urbanistitalic"
+                    android:textColor="@color/design_default_color_primary_variant"
+                    app:bindGenres="@{details}"
+                    app:layout_constraintStart_toStartOf="@+id/guideline3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtOverview"
+                    tools:text="Drama, Ação e Romance" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </FrameLayout>
 </layout>

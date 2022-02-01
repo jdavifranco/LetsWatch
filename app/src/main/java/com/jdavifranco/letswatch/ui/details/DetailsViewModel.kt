@@ -6,16 +6,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jdavifranco.letswatch.domain.model.Details
 import com.jdavifranco.letswatch.domain.usecase.GetMovieDetailsUC
+import com.jdavifranco.letswatch.ui.utils.ResponseState
 import kotlinx.coroutines.launch
 
 class DetailsViewModel(private val getMovieDetailsUCUC: GetMovieDetailsUC) : ViewModel() {
-    private var _details = MutableLiveData<Details>()
-    val details: LiveData<Details>
-        get() = _details
+    private var _responseState = MutableLiveData<ResponseState<Details>>()
+    val responseState : LiveData<ResponseState<Details>>
+        get() = _responseState
 
-    fun refreshDetails(id:Long){
+
+    fun fetchDetails(id:Long){
         viewModelScope.launch {
-            _details.postValue(getMovieDetailsUCUC.invoke(id))
+            _responseState.postValue(ResponseState.Loading)
+
+            try {
+                _responseState.postValue(
+                    ResponseState.Success(
+                        result = getMovieDetailsUCUC.invoke(id)
+                    )
+                )
+            }catch (e:Exception){
+                _responseState.postValue(ResponseState.Error(e))
+            }
         }
     }
 }
