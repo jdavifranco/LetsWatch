@@ -16,6 +16,7 @@ class LetsApplication: Application() {
             modules(
                 networkModule,
                 repositoryModule,
+                useCaseModule,
                 viewModelModule
             )
         }
