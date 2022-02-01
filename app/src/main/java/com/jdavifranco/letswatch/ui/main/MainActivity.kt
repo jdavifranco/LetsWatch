@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(){
         })
     }
 
-    fun onSuccess(genreList:List<Genre>){
+    private fun onSuccess(genreList:List<Genre>){
 
         tabPagerAdapter = TabPagerAdapter(this, genreList)
         contentBinding.viewPager.adapter = tabPagerAdapter

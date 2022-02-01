@@ -5,10 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.jdavifranco.letswatch.domain.datarepository.MovieDataRepository
-import com.jdavifranco.letswatch.repository.MovieRepository
+import com.jdavifranco.letswatch.domain.data.MovieDataRepository
 import com.jdavifranco.letswatch.domain.model.Movie
 import com.jdavifranco.letswatch.ui.utils.ResponseState
 import kotlinx.coroutines.flow.Flow
@@ -41,8 +42,15 @@ class GalleryViewModel(private val repository: MovieDataRepository) : ViewModel(
         }
         currentQueryValue = queryString
 
-        val newResult: Flow<PagingData<Movie>> = repository.getMovieStream(queryString)
+        val newResult: Flow<PagingData<Movie>> = Pager(
+            config = PagingConfig(
+                pageSize = MOVIES_PAGE_SIZE,
+                enablePlaceholders = false,
+            ),
+            pagingSourceFactory = { PagingSource(repository, queryString) }
+        ).flow
             .cachedIn(viewModelScope)
+
         currentSearchResult = newResult
 
         return newResult

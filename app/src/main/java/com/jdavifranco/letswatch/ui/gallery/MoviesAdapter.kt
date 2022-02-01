@@ -29,7 +29,7 @@ class MoviesAdapter(var clickListener: MovieClickListener)
 
     class MoviesViewHolder(private val binding: GalleryItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item:Movie, clickListener: MovieClickListener){
+        fun bind(item: Movie, clickListener: MovieClickListener){
             binding.movie = item
             binding.root.setOnClickListener { clickListener.onMovieClick(id = item.id) }
             binding.executePendingBindings()

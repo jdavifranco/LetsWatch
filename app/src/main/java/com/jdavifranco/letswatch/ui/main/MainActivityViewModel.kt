@@ -1,9 +1,8 @@
 package com.jdavifranco.letswatch.ui.main
 
 import androidx.lifecycle.*
-import com.jdavifranco.letswatch.domain.datarepository.MovieDataRepository
+import com.jdavifranco.letswatch.domain.data.MovieDataRepository
 import com.jdavifranco.letswatch.domain.model.Genre
-import com.jdavifranco.letswatch.repository.MovieRepository
 import com.jdavifranco.letswatch.ui.utils.*
 import kotlinx.coroutines.launch
 import java.lang.Exception

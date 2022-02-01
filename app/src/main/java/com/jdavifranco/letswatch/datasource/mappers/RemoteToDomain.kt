@@ -16,9 +16,9 @@ fun MovieListRM.toDomain():List<Movie>{
 fun MovieRM.toDomain(): Movie {
     return Movie(
         id = this.id,
-        title =  this.title,
-        poster = API_IMAGE_BASE_URL +(this.posterUrl?:""),
-        date = this.releaseDate?:"?",
+        title = this.title,
+        poster = API_IMAGE_BASE_URL + (this.posterUrl ?: ""),
+        date = this.releaseDate ?: "?",
         voteAverage = this.vote
     )
 }
@@ -26,13 +26,13 @@ fun MovieRM.toDomain(): Movie {
 fun DetailsRM.toDomain(): Details {
     return Details(
         id = id,
-        title =  title,
-        poster = API_IMAGE_BASE_URL +(posterUrl ?:""),
-        date = releaseDate ?:"",
+        title = title,
+        poster = API_IMAGE_BASE_URL + (posterUrl ?: ""),
+        date = releaseDate ?: "",
         voteAverage = voteAverage,
         overview = overview ?: "",
         genreLMS = genres.toDomain(),
-        runtime = runtime?:"",
+        runtime = runtime ?: "",
 
         )
 }
