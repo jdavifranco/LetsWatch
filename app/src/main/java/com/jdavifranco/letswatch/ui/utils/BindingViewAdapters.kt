@@ -16,9 +16,9 @@ fun bindResponseState(view:View, responseState: ResponseState<Any>?){
     responseState?.let {
         when(it){
             is ResponseState.Loading->{
-                view.findViewById<View>(R.id.loading_state).visibility = View.VISIBLE
                 view.findViewById<View>(R.id.success_state).visibility = View.GONE
                 view.findViewById<View>(R.id.error_state).visibility = View.GONE
+                view.findViewById<View>(R.id.loading_state).visibility = View.VISIBLE
             }
             is ResponseState.Error->{
                 view.findViewById<View>(R.id.loading_state).visibility = View.GONE
@@ -27,8 +27,8 @@ fun bindResponseState(view:View, responseState: ResponseState<Any>?){
             }
             is ResponseState.Success->{
                 view.findViewById<View>(R.id.loading_state).visibility = View.GONE
-                view.findViewById<View>(R.id.success_state).visibility = View.VISIBLE
                 view.findViewById<View>(R.id.error_state).visibility = View.GONE
+                view.findViewById<View>(R.id.success_state).visibility = View.VISIBLE
             }
         }
 
