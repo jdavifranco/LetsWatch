@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.jdavifranco.letswatch.R
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
 import com.jdavifranco.letswatch.ui.details.DetailsActivity
@@ -35,32 +38,35 @@ class GalleryFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.gallery_fragment, container, false)
         binding.lifecycleOwner = this
 
-        searchMovies(searchQuery)
+        viewModel.fetchMovies(searchQuery)
 
-        viewModel.responseState.observe(viewLifecycleOwner, {
-            binding.responseState = it
+        viewModel.responseState.observe(viewLifecycleOwner, {responseState->
+            binding.responseState = responseState
 
-            when(it){
+            when(responseState){
+                is ResponseState.Loading ->{}
+                is ResponseState.Error ->{
+                    binding.errorState.findViewById<Button>(R.id.btnReload).setOnClickListener {
+                        viewModel.fetchMovies(searchQuery)
+                    }
+                }
                 is ResponseState.Success->{
                     searchJob?.cancel()
                     searchJob = lifecycleScope.launch {
-                        it.result.collect {
-                            adapter.submitData(it)
+                        repeatOnLifecycle(Lifecycle.State.STARTED){
+                            responseState.result.collect {
+                                adapter.submitData(it)
+                            }
                         }
                     }
                 }
             }
-
         })
 
         binding.rvMovies.adapter = adapter
         binding.rvMovies.setHasFixedSize(true)
 
         return binding.root
-    }
-
-    private fun searchMovies(query: String) {
-        viewModel.fetchMovies(query)
     }
 
     private fun movieClickListener():MovieClickListener{
