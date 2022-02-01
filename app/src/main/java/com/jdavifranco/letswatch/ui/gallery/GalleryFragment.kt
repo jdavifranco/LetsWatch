@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.jdavifranco.letswatch.R
-import com.jdavifranco.letswatch.databinding.GalleryContentBinding
 import com.jdavifranco.letswatch.databinding.GalleryFragmentBinding
 import com.jdavifranco.letswatch.ui.details.DetailsActivity
 import com.jdavifranco.letswatch.ui.utils.ResponseState
@@ -25,8 +24,7 @@ class GalleryFragment : Fragment() {
     private lateinit var searchQuery: String
 
     private val viewModel: GalleryViewModel by viewModel()
-    private lateinit var stateBinding:GalleryFragmentBinding
-    private lateinit var contentBinding: GalleryContentBinding
+    private lateinit var binding:GalleryFragmentBinding
     private val adapter = MoviesAdapter(movieClickListener())
 
     override fun onCreateView(
@@ -34,15 +32,14 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        stateBinding = DataBindingUtil.inflate(inflater, R.layout.gallery_fragment, container, false)
-        stateBinding.lifecycleOwner =this
-
-        contentBinding = stateBinding.successState
+        binding = DataBindingUtil.inflate(inflater, R.layout.gallery_fragment, container, false)
+        binding.lifecycleOwner = this
 
         searchMovies(searchQuery)
 
         viewModel.responseState.observe(viewLifecycleOwner, {
-            stateBinding.responseState = it
+            binding.responseState = it
+
             when(it){
                 is ResponseState.Success->{
                     searchJob?.cancel()
@@ -56,10 +53,10 @@ class GalleryFragment : Fragment() {
 
         })
 
-        contentBinding.rvMovies.adapter = adapter
-        contentBinding.rvMovies.setHasFixedSize(true)
+        binding.rvMovies.adapter = adapter
+        binding.rvMovies.setHasFixedSize(true)
 
-        return stateBinding.root
+        return binding.root
     }
 
     private fun searchMovies(query: String) {

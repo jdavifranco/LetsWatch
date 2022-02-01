@@ -33,7 +33,7 @@ class MovieRepositoryUnitTest {
                 .thenReturn(genreListRM)
 
         val repository = MovieRepository(remoteDataSource)
-        assertEquals(expected = genreListRM.toDomain(), actual = repository.getMovieGenreList())
+        assertEquals(expected = genreListRM.toDomain(), actual = repository.getGenreList())
     }
 
     @Test
@@ -45,7 +45,7 @@ class MovieRepositoryUnitTest {
         val repository = MovieRepository(remoteDataSource)
         assertFailsWith(exceptionClass = HttpException::class,
             block = {
-                repository.getMovieGenreList()
+                repository.getGenreList()
             }
         )
     }

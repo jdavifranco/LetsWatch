@@ -21,7 +21,7 @@ class MovieRepository(
     }
 
 
-    override suspend fun getMovieGenreList() :List<Genre> {
+    override suspend fun getGenreList() :List<Genre> {
         try {
            return remoteDataSource.getGenreList().toDomain()
         }catch (e:HttpException){
