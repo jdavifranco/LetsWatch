@@ -10,16 +10,16 @@ import retrofit2.http.Query
 
 interface RemoteDataSource {
     @GET("genre/movie/list?api_key=$MOVIES_API_KEY")
-    suspend fun getGenreList(): GenreListRM
+    fun getGenreList(): GenreListRM
 
     @GET("discover/movie?api_key=$MOVIES_API_KEY")
-    suspend fun getMoviesByGenre(
+    fun getMoviesByGenre(
         @Query("with_genres") genreId:String,
         @Query("page") page:Int
     ):MovieListRM
 
     @GET("movie/{id}?api_key=$MOVIES_API_KEY")
-    suspend fun getMovieDetails(@Path("id")id:Long): DetailsRM
+    fun getMovieDetails(@Path("id")id:Long): DetailsRM
 
 
 }
