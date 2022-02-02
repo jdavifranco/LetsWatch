@@ -3,10 +3,8 @@ package com.jdavifranco.letswatch.repository
 import com.jdavifranco.letswatch.datasource.mappers.toDomain
 import com.jdavifranco.letswatch.datasource.remote.RemoteDataSource
 import com.jdavifranco.letswatch.domain.data.MovieDataRepository
-import com.jdavifranco.letswatch.domain.model.Details
-import com.jdavifranco.letswatch.domain.model.Genre
-import com.jdavifranco.letswatch.domain.model.Movie
-import retrofit2.HttpException
+import com.jdavifranco.letswatch.domain.model.*
+import kotlin.Exception
 
 class MovieRepository(
     private val remoteDataSource: RemoteDataSource
@@ -15,8 +13,8 @@ class MovieRepository(
     override suspend fun getMovieListByGenre(query: String, pagePosition:Int): List<Movie> {
         try {
             return remoteDataSource.getMoviesByGenre(query, pagePosition).toDomain()
-        }catch (e:HttpException){
-            throw e
+        }catch (e:Exception) {
+            throw RemoteConnectionException()
         }
     }
 
@@ -24,25 +22,21 @@ class MovieRepository(
     override suspend fun getGenreList() :List<Genre> {
         try {
            return remoteDataSource.getGenreList().toDomain()
-        }catch (e:HttpException){
-            throw e
-       }
+        }catch (e:Exception) {
+            throw RemoteConnectionException()
+        }
     }
 
 
 
     override suspend fun getMovieDetails(id: Long): Details {
-        val detailsRM = remoteDataSource.getMovieDetails(id)
-        return detailsRM.toDomain()
+        try {
+            val detailsRM = remoteDataSource.getMovieDetails(id)
+            return detailsRM.toDomain()
+        }
+        catch (e:Exception) {
+            throw RemoteConnectionException()
+        }
     }
 
 }
-/*
-return Pager(
-            config = PagingConfig(
-                pageSize = MOVIES_PAGE_SIZE,
-                enablePlaceholders = false,
-            ),
-            pagingSourceFactory = { PagingSource(remoteDataSource, query) }
-        ).flow
-* */
