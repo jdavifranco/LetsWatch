@@ -36,4 +36,5 @@ ext{
     constraint_layout_version = '2.1.2'
     mockito_version = '4.2.0'
     junit_version = '4.13.2'
+    mockk_version = '1.12.2'
 }
